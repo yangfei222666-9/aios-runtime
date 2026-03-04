@@ -1,0 +1,2 @@
+# AIOS Dashboard 依赖
+psutil>=5.9.0  # 系统资源监控（可选）

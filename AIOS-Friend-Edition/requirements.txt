@@ -1,0 +1,11 @@
+# AIOS 核心依赖（可选）
+# 注意：AIOS 核心功能使用纯 Python 标准库，无需额外依赖
+# 以下依赖仅用于增强功能
+
+# 数据库（可选）
+# aiosqlite>=0.17.0
+
+# 测试（可选）
+# pytest>=7.0.0
+# pytest-asyncio>=0.21.0
+# pytest-cov>=4.0.0

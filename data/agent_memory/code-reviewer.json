@@ -1,0 +1,523 @@
+{
+  "review_count": {
+    "value": 66,
+    "updated_at": 1772083461.9023957
+  },
+  "last_review_agent.py": {
+    "value": {
+      "score": 87,
+      "issues": 5
+    },
+    "updated_at": 1772082878.0751607
+  },
+  "issue_patterns": {
+    "value": {
+      "Function 'analyze_syntax' is 101 lines (": 1,
+      "Function 'review_file' is 76 lines (>50)": 1,
+      "TODO/FIXME: if \"todo\" in source_lower or": 1,
+      "TODO/FIXME: if \"todo\" in ll or \"fixme\" i": 1,
+      "TODO/FIXME: \"msg\": f\"TODO/FIXME: {line.s": 1,
+      "Function 'run_queue' is 137 lines (>50),": 1,
+      "Function 'aios_challenge_agent' is 60 li": 1,
+      "Function 'agent_challenge_aios' is 59 li": 1,
+      "Function '_update_leaderboard' is 57 lin": 1,
+      "Function 'resolve' is 87 lines (>50), co": 1,
+      "Function 'check' is 100 lines (>50), con": 1,
+      "Function 'format_result' is 90 lines (>5": 1,
+      "Bare 'except:' catches all exceptions, b": 18,
+      "Function 'query_decisions' is 55 lines (": 1,
+      "Function 'migrate_from_single_file' is 5": 1,
+      "Function 'compute_reactor_score' is 77 l": 1,
+      "Function 'cli' is 57 lines (>50), consid": 1,
+      "Function 'execute' is 53 lines (>50), co": 1,
+      "Function 'analyze_playbook_patterns' is ": 1,
+      "Function 'generate_suggestions' is 90 li": 1,
+      "Function 'cli' is 58 lines (>50), consid": 1,
+      "Function 'main' is 68 lines (>50), consi": 1,
+      "Function 'record_provider_execution' is ": 1,
+      "Function 'route_model' is 95 lines (>50)": 1,
+      "TODO/FIXME: # TODO: 从日志中统计": 1,
+      "Function 'route' is 54 lines (>50), cons": 1,
+      "Function 'main' is 58 lines (>50), consi": 1,
+      "Function 'learn_and_adjust' is 78 lines ": 1,
+      "Function 'cli' is 54 lines (>50), consid": 1,
+      "TODO/FIXME: \"target\": f'echo \"TODO: impl": 1,
+      "Function 'execute' is 77 lines (>50), co": 1,
+      "Function '_execute_task' is 69 lines (>5": 1,
+      "Function 'run' is 59 lines (>50), consid": 1,
+      "Function 'execute_with_failover' is 75 l": 1,
+      "Function 'queued_route_model' has 7 para": 1,
+      "Function 'route' is 83 lines (>50), cons": 1,
+      "Function 'route' has 8 parameters (>6), ": 1,
+      "Function 'react' is 145 lines (>50), con": 1,
+      "Function 'dashboard_metrics' is 91 lines": 1,
+      "Function 'cli' is 106 lines (>50), consi": 1,
+      "Function '_load_plugin' is 59 lines (>50": 1,
+      "Function '_execute_task' is 67 lines (>5": 1,
+      "Function '_calculate_score' is 56 lines ": 2,
+      "Function 'scan' is 82 lines (>50), consi": 1,
+      "Function 'scan_all' is 62 lines (>50), c": 1,
+      "Function 'scan_all' has 7 parameters (>6": 1,
+      "Function 'scan' is 57 lines (>50), consi": 2,
+      "Function 'scan' is 52 lines (>50), consi": 1,
+      "Function 'scan' is 76 lines (>50), consi": 1,
+      "TODO/FIXME: \"todo_check\": [\"todoist\"],": 1,
+      "TODO/FIXME: \"todo_check\": \"list\",": 1,
+      "Function 'call_skill' is 70 lines (>50),": 1,
+      "invalid non-printable character U+FEFF": 2,
+      "Function '_execute_fix' is 74 lines (>50": 1,
+      "Function 'format_task_list' is 54 lines ": 1,
+      "Function 'main' is 132 lines (>50), cons": 1,
+      "Function '__init__' has 7 parameters (>6": 2,
+      "TODO/FIXME: 1. 任务状态机：TODO → IN_PROGRESS ": 1,
+      "TODO/FIXME: STATUS_TODO = \"TODO\"": 1,
+      "TODO/FIXME: VALID_STATUSES = {STATUS_TOD": 1,
+      "TODO/FIXME: self.status = STATUS_TODO": 1,
+      "TODO/FIXME: task.status = data.get(\"stat": 1,
+      "TODO/FIXME: STATUS_TODO: \"⏳\",": 1,
+      "Function 'check' is 87 lines (>50), cons": 1
+    },
+    "updated_at": 1772083461.903397
+  },
+  "last_review_action_engine.py": {
+    "value": {
+      "score": 90,
+      "issues": 1
+    },
+    "updated_at": 1772083454.8395312
+  },
+  "last_review_agent_arena.py": {
+    "value": {
+      "score": 85,
+      "issues": 3
+    },
+    "updated_at": 1772083454.8557124
+  },
+  "last_review_agent_state_machine.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083454.8712637
+  },
+  "last_review_app_alias.py": {
+    "value": {
+      "score": 95,
+      "issues": 1
+    },
+    "updated_at": 1772083454.8818138
+  },
+  "last_review_budget.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083454.8943765
+  },
+  "last_review_circuit_breaker.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083454.903391
+  },
+  "last_review_config.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083454.9114194
+  },
+  "last_review_deadloop_breaker.py": {
+    "value": {
+      "score": 85,
+      "issues": 3
+    },
+    "updated_at": 1772083454.9224505
+  },
+  "last_review_decision_log.py": {
+    "value": {
+      "score": 95,
+      "issues": 1
+    },
+    "updated_at": 1772083454.9309807
+  },
+  "last_review_dispatcher.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083454.9380155
+  },
+  "last_review_engine.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083454.946523
+  },
+  "last_review_event.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083454.95554
+  },
+  "last_review_event_bus.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083454.9595401
+  },
+  "last_review_event_bus_optimized.py": {
+    "value": {
+      "score": 95,
+      "issues": 1
+    },
+    "updated_at": 1772083454.9680676
+  },
+  "last_review_event_store.py": {
+    "value": {
+      "score": 90,
+      "issues": 2
+    },
+    "updated_at": 1772083454.9771018
+  },
+  "last_review_evolution.py": {
+    "value": {
+      "score": 65,
+      "issues": 7
+    },
+    "updated_at": 1772083454.9856377
+  },
+  "last_review_executor.py": {
+    "value": {
+      "score": 90,
+      "issues": 2
+    },
+    "updated_at": 1772083454.996182
+  },
+  "last_review_feedback_loop.py": {
+    "value": {
+      "score": 80,
+      "issues": 4
+    },
+    "updated_at": 1772083455.005705
+  },
+  "last_review_integrations.py": {
+    "value": {
+      "score": 95,
+      "issues": 1
+    },
+    "updated_at": 1772083455.0159714
+  },
+  "last_review_isolated_event_store.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.023491
+  },
+  "last_review_learning_workflow.py": {
+    "value": {
+      "score": 90,
+      "issues": 1
+    },
+    "updated_at": 1772083455.034026
+  },
+  "last_review_llm_helper.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.0450432
+  },
+  "last_review_model_router.py": {
+    "value": {
+      "score": 94,
+      "issues": 2
+    },
+    "updated_at": 1772083455.0550718
+  },
+  "last_review_model_router_v2.py": {
+    "value": {
+      "score": 95,
+      "issues": 1
+    },
+    "updated_at": 1772083455.061075
+  },
+  "last_review_notification_handler.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.070588
+  },
+  "last_review_orchestrator.py": {
+    "value": {
+      "score": 95,
+      "issues": 1
+    },
+    "updated_at": 1772083455.079623
+  },
+  "last_review_pipeline_events.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.0876532
+  },
+  "last_review_playbook.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.0962772
+  },
+  "last_review_policies.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.1032896
+  },
+  "last_review_policy_learner.py": {
+    "value": {
+      "score": 89,
+      "issues": 3
+    },
+    "updated_at": 1772083455.1120577
+  },
+  "last_review_production_reactor.py": {
+    "value": {
+      "score": 95,
+      "issues": 1
+    },
+    "updated_at": 1772083455.1220734
+  },
+  "last_review_production_scheduler.py": {
+    "value": {
+      "score": 90,
+      "issues": 2
+    },
+    "updated_at": 1772083455.1320937
+  },
+  "last_review_provider_manager.py": {
+    "value": {
+      "score": 90,
+      "issues": 2
+    },
+    "updated_at": 1772083455.1421237
+  },
+  "last_review_queued_router.py": {
+    "value": {
+      "score": 85,
+      "issues": 3
+    },
+    "updated_at": 1772083455.1471448
+  },
+  "last_review_reactor.py": {
+    "value": {
+      "score": 65,
+      "issues": 6
+    },
+    "updated_at": 1772083455.1606898
+  },
+  "last_review_reactor_events.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.1683054
+  },
+  "last_review_real_playbooks.py": {
+    "value": {
+      "score": 90,
+      "issues": 2
+    },
+    "updated_at": 1772083455.176838
+  },
+  "last_review_registry.py": {
+    "value": {
+      "score": 95,
+      "issues": 1
+    },
+    "updated_at": 1772083455.1878543
+  },
+  "last_review_resource_events.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.195385
+  },
+  "last_review_scheduler_v2.py": {
+    "value": {
+      "score": 90,
+      "issues": 1
+    },
+    "updated_at": 1772083455.2069132
+  },
+  "last_review_score_engine.py": {
+    "value": {
+      "score": 95,
+      "issues": 1
+    },
+    "updated_at": 1772083455.2159398
+  },
+  "last_review_screen_sensor.py": {
+    "value": {
+      "score": 95,
+      "issues": 1
+    },
+    "updated_at": 1772083455.2269957
+  },
+  "last_review_sensors.py": {
+    "value": {
+      "score": 65,
+      "issues": 6
+    },
+    "updated_at": 1772083455.239001
+  },
+  "last_review_skill_integration.py": {
+    "value": {
+      "score": 98,
+      "issues": 2
+    },
+    "updated_at": 1772083455.2490296
+  },
+  "last_review_skill_manager.py": {
+    "value": {
+      "score": 85,
+      "issues": 3
+    },
+    "updated_at": 1772083455.2595496
+  },
+  "last_review_task_dispatcher.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.2665708
+  },
+  "last_review_test_action_engine.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.2785969
+  },
+  "last_review_test_executor.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.288733
+  },
+  "last_review_test_queued_router.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.2922368
+  },
+  "last_review_threshold_monitor.py": {
+    "value": {
+      "score": 0,
+      "issues": 1
+    },
+    "updated_at": 1772083461.903397
+  },
+  "last_review_toy_reactor.py": {
+    "value": {
+      "score": 95,
+      "issues": 1
+    },
+    "updated_at": 1772083455.3132946
+  },
+  "last_review_toy_scheduler.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.3223305
+  },
+  "last_review_toy_score_engine.py": {
+    "value": {
+      "score": 95,
+      "issues": 1
+    },
+    "updated_at": 1772083455.3283594
+  },
+  "last_review_tracker.py": {
+    "value": {
+      "score": 79,
+      "issues": 9
+    },
+    "updated_at": 1772083455.342389
+  },
+  "last_review_verifier.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.3524213
+  },
+  "last_review_watcher.py": {
+    "value": {
+      "score": 95,
+      "issues": 1
+    },
+    "updated_at": 1772083455.3644772
+  },
+  "last_review___init__.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.4713044
+  },
+  "last_review_base.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.3760262
+  },
+  "last_review_llm_queue.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.396076
+  },
+  "last_review_memory_queue.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.4266636
+  },
+  "last_review_storage_queue.py": {
+    "value": {
+      "score": 95,
+      "issues": 1
+    },
+    "updated_at": 1772083455.4311771
+  },
+  "last_review_test_queues.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.4377015
+  },
+  "last_review_thread_pool.py": {
+    "value": {
+      "score": 100,
+      "issues": 0
+    },
+    "updated_at": 1772083455.4452333
+  }
+}

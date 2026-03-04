@@ -1,0 +1,46 @@
+{
+  "task_id": "plan_1772109757138",
+  "original_task": "实现 Memory 模块",
+  "subtasks": [
+    {
+      "id": "subtask_1",
+      "description": "设计 Memory 模块 的架构",
+      "type": "design",
+      "priority": "high",
+      "dependencies": [],
+      "estimated_time": 300,
+      "status": "completed",
+      "result": "设计 Memory 模块 的架构 - 完成",
+      "created_at": 1772109757.1384525
+    },
+    {
+      "id": "subtask_2",
+      "description": "实现 Memory 模块 的核心功能",
+      "type": "code",
+      "priority": "high",
+      "dependencies": [
+        "subtask_1"
+      ],
+      "estimated_time": 600,
+      "status": "completed",
+      "result": "实现 Memory 模块 的核心功能 - 完成",
+      "created_at": 1772109757.1384525
+    },
+    {
+      "id": "subtask_3",
+      "description": "测试 Memory 模块",
+      "type": "code",
+      "priority": "normal",
+      "dependencies": [
+        "subtask_2",
+        "subtask_1"
+      ],
+      "estimated_time": 180,
+      "status": "completed",
+      "result": "测试 Memory 模块 - 完成",
+      "created_at": 1772109757.1384525
+    }
+  ],
+  "strategy": "dag",
+  "created_at": 1772109757.1384525
+}

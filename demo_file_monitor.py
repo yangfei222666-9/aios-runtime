@@ -1,223 +1,296 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-AIOS 真实场景演示 - 文件监控 + 自动备份
-展示完整闭环：监控 → 检测变化 → 自动备份 → 验证 → 通知
+AIOS Demo: File Monitor + Auto Organizer
+
+Real-world scenario: Monitor a folder for new files and automatically organize them.
+
+Scenario:
+1. Monitor downloads/ folder
+2. New file detected → classify by extension
+3. Move to appropriate folder (documents/images/videos/archives)
+4. Log the action
+
+This demonstrates:
+- EventBus (file events)
+- Reactor (auto-response to events)
+- Scheduler (task execution)
+- Real-world automation
 """
 import sys
 import time
 import json
-import shutil
 from pathlib import Path
-from datetime import datetime
-import hashlib
 
-# 添加路径
-sys.path.insert(0, str(Path(__file__).parent))
+# Add AIOS to path
+AIOS_ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(AIOS_ROOT))
 
-from observability import span, METRICS, get_logger
+# Use in-memory EventBus (no storage)
+from core.event import Event
 
-logger = get_logger("FileMonitorDemo")
 
-def calculate_hash(file_path: Path) -> str:
-    """计算文件哈希"""
-    if not file_path.exists():
-        return ""
+class SimpleEventBus:
+    """Simple in-memory event bus for demo."""
     
-    hasher = hashlib.md5()
-    with open(file_path, "rb") as f:
-        hasher.update(f.read())
-    return hasher.hexdigest()
+    def __init__(self):
+        self._subscribers = {}
+    
+    def emit(self, event: Event):
+        """Emit an event."""
+        # Notify exact match
+        if event.type in self._subscribers:
+            for callback in self._subscribers[event.type]:
+                callback(event)
+        
+        # Notify wildcard subscribers
+        for pattern, callbacks in self._subscribers.items():
+            if "*" in pattern:
+                prefix = pattern.replace("*", "")
+                if event.type.startswith(prefix):
+                    for callback in callbacks:
+                        callback(event)
+    
+    def subscribe(self, event_type: str, callback):
+        """Subscribe to an event type."""
+        if event_type not in self._subscribers:
+            self._subscribers[event_type] = []
+        self._subscribers[event_type].append(callback)
 
-def backup_file(source: Path, backup_dir: Path) -> Path:
-    """备份文件"""
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    backup_name = f"{source.stem}_{timestamp}{source.suffix}"
-    backup_path = backup_dir / backup_name
-    
-    shutil.copy2(source, backup_path)
-    return backup_path
 
-def print_banner(text: str):
-    """打印横幅"""
-    print("\n" + "=" * 70)
-    print(f"  {text}")
-    print("=" * 70)
+def create_event(event_type: str, data: dict) -> Event:
+    """Create an event."""
+    import uuid
+    return Event(
+        id=str(uuid.uuid4()),
+        type=event_type,
+        source="demo",
+        timestamp=int(time.time() * 1000),
+        payload=data
+    )
 
-def main():
-    """主函数"""
-    print_banner("🚀 AIOS 真实场景演示 - 文件监控 + 自动备份")
+
+class FileMonitor:
+    """Monitor a folder for new files."""
     
-    # 创建演示环境
-    demo_dir = Path(__file__).parent / "demo_workspace"
-    demo_dir.mkdir(exist_ok=True)
+    def __init__(self, watch_dir: Path, event_bus: SimpleEventBus):
+        self.watch_dir = watch_dir
+        self.watch_dir.mkdir(parents=True, exist_ok=True)
+        self._bus = event_bus
+        self._seen_files = set(f.name for f in self.watch_dir.iterdir() if f.is_file())
     
-    backup_dir = demo_dir / "backups"
-    backup_dir.mkdir(exist_ok=True)
+    def check(self):
+        """Check for new files."""
+        current_files = set(f.name for f in self.watch_dir.iterdir() if f.is_file())
+        new_files = current_files - self._seen_files
+        
+        for filename in new_files:
+            file_path = self.watch_dir / filename
+            self._bus.emit(create_event(
+                "file.new",
+                {
+                    "path": str(file_path),
+                    "name": filename,
+                    "size": file_path.stat().st_size,
+                    "extension": file_path.suffix.lower(),
+                }
+            ))
+            print(f"[Monitor] New file detected: {filename}")
+        
+        self._seen_files = current_files
+        return len(new_files)
+
+
+class FileOrganizer:
+    """Organize files by extension."""
     
-    watched_file = demo_dir / "important_config.json"
-    
-    # 初始化文件
-    initial_data = {
-        "version": "1.0",
-        "settings": {
-            "debug": False,
-            "timeout": 30
-        }
+    # File type mappings
+    CATEGORIES = {
+        "documents": [".txt", ".pdf", ".doc", ".docx", ".md", ".rtf"],
+        "images": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg", ".webp"],
+        "videos": [".mp4", ".avi", ".mkv", ".mov", ".wmv", ".flv"],
+        "archives": [".zip", ".rar", ".7z", ".tar", ".gz"],
+        "code": [".py", ".js", ".java", ".cpp", ".c", ".h", ".html", ".css"],
+        "audio": [".mp3", ".wav", ".flac", ".aac", ".ogg"],
     }
     
-    print("\n📁 创建演示环境...")
-    print(f"   监控文件: {watched_file}")
-    print(f"   备份目录: {backup_dir}")
+    def __init__(self, base_dir: Path, event_bus: SimpleEventBus):
+        self.base_dir = base_dir
+        self._bus = event_bus
+        
+        # Create category folders
+        for category in self.CATEGORIES.keys():
+            (self.base_dir / category).mkdir(parents=True, exist_ok=True)
+        (self.base_dir / "others").mkdir(parents=True, exist_ok=True)
+        
+        # Subscribe to file events
+        self._bus.subscribe("file.new", self.handle_new_file)
     
-    with open(watched_file, "w", encoding="utf-8") as f:
-        json.dump(initial_data, f, indent=2, ensure_ascii=False)
-    
-    print("   ✅ 环境创建完成")
-    
-    # 开始监控
-    print("\n🔍 开始监控文件变化（每 2 秒检查一次）...")
-    print("   提示：请在另一个窗口修改文件，或等待自动修改演示\n")
-    
-    last_hash = calculate_hash(watched_file)
-    check_count = 0
-    backup_count = 0
-    
-    # 自动修改计划
-    auto_modify_at = 3  # 第3次检查时自动修改
-    
-    try:
-        for i in range(10):  # 检查 10 次
-            check_count += 1
+    def handle_new_file(self, event):
+        """Handle new file event."""
+        file_path = Path(event.payload["path"])
+        extension = event.payload["extension"]
+        
+        # Determine category
+        category = "others"
+        for cat, exts in self.CATEGORIES.items():
+            if extension in exts:
+                category = cat
+                break
+        
+        # Move file
+        dest_dir = self.base_dir / category
+        dest_path = dest_dir / file_path.name
+        
+        try:
+            file_path.rename(dest_path)
+            print(f"[Organizer] Moved {file_path.name} → {category}/")
             
-            with span(f"file-check-{check_count}"):
-                # 自动修改演示（第3次检查）
-                if check_count == auto_modify_at:
-                    print(f"{'='*70}")
-                    print("  🔧 自动修改文件（模拟用户编辑）...")
-                    print(f"{'='*70}\n")
-                    
-                    modified_data = initial_data.copy()
-                    modified_data["version"] = "1.1"
-                    modified_data["settings"]["debug"] = True
-                    modified_data["settings"]["timeout"] = 60
-                    
-                    with open(watched_file, "w", encoding="utf-8") as f:
-                        json.dump(modified_data, f, indent=2, ensure_ascii=False)
-                    
-                    print("   ✅ 文件已修改")
-                    time.sleep(0.5)
-                
-                # 检查文件变化
-                current_hash = calculate_hash(watched_file)
-                timestamp = datetime.now().strftime("%H:%M:%S")
-                
-                if current_hash != last_hash:
-                    print(f"[{timestamp}] 🚨 检测到文件变化！")
-                    METRICS.inc_counter("file.changes.detected", 1, labels={"file": watched_file.name})
-                    
-                    # 触发自动备份
-                    print(f"\n{'='*70}")
-                    print("  💾 触发 AIOS 自动备份...")
-                    print(f"{'='*70}\n")
-                    
-                    with span("auto-backup"):
-                        try:
-                            backup_path = backup_file(watched_file, backup_dir)
-                            backup_count += 1
-                            
-                            print(f"   ✅ 备份成功: {backup_path.name}")
-                            METRICS.inc_counter("file.backups.success", 1, labels={"file": watched_file.name})
-                            
-                            # 验证备份
-                            backup_hash = calculate_hash(backup_path)
-                            if backup_hash == current_hash:
-                                print(f"   ✅ 备份验证通过（哈希匹配）")
-                                METRICS.inc_counter("file.backups.verified", 1)
-                            else:
-                                print(f"   ❌ 备份验证失败（哈希不匹配）")
-                                METRICS.inc_counter("file.backups.verification_failed", 1)
-                        
-                        except Exception as e:
-                            print(f"   ❌ 备份失败: {e}")
-                            METRICS.inc_counter("file.backups.failure", 1)
-                    
-                    print(f"\n{'='*70}")
-                    print("  🔄 继续监控...")
-                    print(f"{'='*70}\n")
-                    
-                    last_hash = current_hash
-                else:
-                    print(f"[{timestamp}] ✅ 检查 #{check_count}: 文件未变化")
-                    METRICS.inc_counter("file.checks.no_change", 1)
-                
-                # 记录检查耗时
-                METRICS.observe("file.check_duration", 0.01, labels={"file": watched_file.name})
-                
-                # 写入共享 Metrics 文件（供 Dashboard 读取）
-                shared_metrics_file = demo_dir.parent / "data" / "metrics_shared.json"
-                shared_metrics_file.parent.mkdir(exist_ok=True)
-                METRICS.write_snapshot(str(shared_metrics_file))
+            # Publish success event
+            self._bus.emit(create_event(
+                "file.organized",
+                {
+                    "original_path": str(file_path),
+                    "new_path": str(dest_path),
+                    "category": category,
+                    "extension": extension,
+                }
+            ))
+        except Exception as e:
+            print(f"[Organizer] Error moving {file_path.name}: {e}")
             
-            time.sleep(2)
+            # Publish error event
+            self._bus.emit(create_event(
+                "file.organize_failed",
+                {
+                    "path": str(file_path),
+                    "error": str(e),
+                }
+            ))
+
+
+class ActionLogger:
+    """Log all file actions."""
     
-    except KeyboardInterrupt:
-        print("\n\n⏹️  监控已停止")
+    def __init__(self, log_file: Path, event_bus: SimpleEventBus):
+        self.log_file = log_file
+        self.log_file.parent.mkdir(parents=True, exist_ok=True)
+        self._bus = event_bus
+        
+        # Subscribe to all file events
+        self._bus.subscribe("file.*", self.log_event)
     
-    # 显示统计
-    print_banner("📊 监控统计")
+    def log_event(self, event):
+        """Log an event."""
+        log_entry = {
+            "timestamp": event.timestamp,
+            "type": event.type,
+            "data": event.payload,
+        }
+        
+        with open(self.log_file, "a", encoding="utf-8") as f:
+            f.write(json.dumps(log_entry, ensure_ascii=False) + "\n")
+
+
+def create_demo_files(watch_dir: Path):
+    """Create some demo files for testing."""
+    demo_files = [
+        ("report.pdf", "documents"),
+        ("photo.jpg", "images"),
+        ("video.mp4", "videos"),
+        ("archive.zip", "archives"),
+        ("script.py", "code"),
+        ("song.mp3", "audio"),
+        ("readme.txt", "documents"),
+        ("unknown.xyz", "others"),
+    ]
     
-    snapshot = METRICS.snapshot()
+    print("\n[Demo] Creating test files...")
+    for filename, expected_category in demo_files:
+        file_path = watch_dir / filename
+        file_path.write_text(f"Demo file: {filename}")
+        print(f"  Created: {filename} (should go to {expected_category}/)")
+        time.sleep(0.2)  # Small delay to simulate real-world timing
+
+
+def main():
+    """Run the demo."""
+    print("=" * 70)
+    print("AIOS Demo: File Monitor + Auto Organizer")
+    print("=" * 70)
+    print("\nScenario:")
+    print("  1. Monitor downloads/ folder")
+    print("  2. New file detected → classify by extension")
+    print("  3. Move to appropriate folder (documents/images/videos/etc.)")
+    print("  4. Log all actions")
+    print("\nThis demonstrates:")
+    print("  - EventBus (file events)")
+    print("  - Reactor (auto-response to events)")
+    print("  - Real-world automation")
+    print("=" * 70)
     
-    changes_detected = 0
-    backups_success = 0
-    backups_verified = 0
+    # Setup
+    demo_dir = AIOS_ROOT / "demo_data" / "file_monitor"
+    watch_dir = demo_dir / "downloads"
+    log_file = demo_dir / "actions.log"
     
-    for counter in snapshot.get("counters", []):
-        if counter["name"] == "file.changes.detected":
-            changes_detected = counter["value"]
-        elif counter["name"] == "file.backups.success":
-            backups_success = counter["value"]
-        elif counter["name"] == "file.backups.verified":
-            backups_verified = counter["value"]
-    
-    print(f"\n✅ 总检查次数: {check_count}")
-    print(f"🚨 检测到变化: {int(changes_detected)} 次")
-    print(f"💾 自动备份: {int(backups_success)} 次")
-    print(f"✅ 备份验证: {int(backups_verified)} 次")
-    
-    # 显示备份文件列表
-    backup_files = sorted(backup_dir.glob("*.json"))
-    if backup_files:
-        print(f"\n📁 备份文件列表:")
-        for bf in backup_files:
-            size = bf.stat().st_size
-            mtime = datetime.fromtimestamp(bf.stat().st_mtime).strftime("%Y-%m-%d %H:%M:%S")
-            print(f"   • {bf.name} ({size} bytes, {mtime})")
-    
-    print_banner("✅ 演示完成！")
-    
-    print("\n💡 这个演示展示了 AIOS 的核心能力：")
-    print("   1. 🔍 持续监控 - 每 2 秒检查文件变化（哈希对比）")
-    print("   2. 🚨 变化检测 - 自动检测文件修改")
-    print("   3. 💾 自动备份 - 检测到变化立即备份（带时间戳）")
-    print("   4. ✅ 验证机制 - 备份后验证哈希确保完整性")
-    print("   5. 📊 数据记录 - 所有事件记录到 Metrics 和 Logger")
-    
-    print("\n📁 查看详细数据：")
-    print("   • 监控文件: " + str(watched_file))
-    print("   • 备份目录: " + str(backup_dir))
-    print("   • 日志: aios/logs/aios.jsonl")
-    print("   • Dashboard: python aios.py dashboard")
-    
-    # 自动清理演示环境
-    print("\n🧹 清理演示环境...")
-    import shutil
-    try:
+    # Clean up previous demo
+    if demo_dir.exists():
+        import shutil
         shutil.rmtree(demo_dir)
-        print("   ✅ 清理完成")
-    except Exception as e:
-        print(f"   ⚠️  清理失败: {e}")
+    
+    # Initialize components
+    event_bus = SimpleEventBus()
+    monitor = FileMonitor(watch_dir, event_bus)
+    organizer = FileOrganizer(demo_dir, event_bus)
+    logger = ActionLogger(log_file, event_bus)
+    
+    print("\n[Setup] Components initialized")
+    print(f"  Watch folder: {watch_dir}")
+    print(f"  Log file: {log_file}")
+    
+    # Create demo files
+    create_demo_files(watch_dir)
+    
+    # Monitor and organize
+    print("\n[Monitor] Checking for new files...")
+    time.sleep(0.5)
+    
+    new_count = monitor.check()
+    print(f"\n[Monitor] Found {new_count} new files")
+    
+    # Wait for organization to complete
+    time.sleep(1)
+    
+    # Show results
+    print("\n" + "=" * 70)
+    print("Results:")
+    print("=" * 70)
+    
+    for category in ["documents", "images", "videos", "archives", "code", "audio", "others"]:
+        category_dir = demo_dir / category
+        if category_dir.exists():
+            files = list(category_dir.iterdir())
+            if files:
+                print(f"\n{category.upper()}/ ({len(files)} files):")
+                for f in files:
+                    print(f"  - {f.name}")
+    
+    # Show log
+    print("\n" + "=" * 70)
+    print("Action Log:")
+    print("=" * 70)
+    
+    if log_file.exists():
+        with open(log_file, "r", encoding="utf-8") as f:
+            for line in f:
+                entry = json.loads(line)
+                print(f"[{entry['type']}] {entry['data']}")
+    
+    print("\n" + "=" * 70)
+    print("Demo completed! ✓")
+    print("=" * 70)
+    print(f"\nDemo files saved to: {demo_dir}")
+    print("You can inspect the organized files and action log.")
+
 
 if __name__ == "__main__":
     main()

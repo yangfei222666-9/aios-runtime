@@ -1,0 +1,46 @@
+{
+  "task_id": "plan_1772109752137",
+  "original_task": "对比 AIOS 和标准 Agent 架构",
+  "subtasks": [
+    {
+      "id": "subtask_1",
+      "description": "收集 AIOS 的信息",
+      "type": "research",
+      "priority": "normal",
+      "dependencies": [],
+      "estimated_time": 120,
+      "status": "completed",
+      "result": "收集 AIOS 的信息 - 完成",
+      "created_at": 1772109752.1371996
+    },
+    {
+      "id": "subtask_2",
+      "description": "收集 架构 的信息",
+      "type": "research",
+      "priority": "normal",
+      "dependencies": [
+        "subtask_1"
+      ],
+      "estimated_time": 120,
+      "status": "completed",
+      "result": "收集 架构 的信息 - 完成",
+      "created_at": 1772109752.1371996
+    },
+    {
+      "id": "subtask_3",
+      "description": "对比 AIOS 和 架构",
+      "type": "analysis",
+      "priority": "high",
+      "dependencies": [
+        "subtask_1",
+        "subtask_2"
+      ],
+      "estimated_time": 180,
+      "status": "completed",
+      "result": "对比 AIOS 和 架构 - 完成",
+      "created_at": 1772109752.1371996
+    }
+  ],
+  "strategy": "dag",
+  "created_at": 1772109752.1371996
+}

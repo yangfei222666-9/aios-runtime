@@ -7,14 +7,9 @@ import tempfile
 import json
 from pathlib import Path
 from datetime import datetime
-import sys
 
-# 添加 AIOS 到路径
-AIOS_ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(AIOS_ROOT))
-
-from core.event_bus import EventBus
-from core.event import Event, EventType, create_event
+from aios.core.event_bus import EventBus
+from aios.core.event import Event, EventType, create_event
 
 
 class TestEventBus:

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Chart Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background: #0a0e27; color: white; padding: 20px; }
+        #chart-container { width: 600px; height: 300px; background: #1a1f3a; padding: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Chart.js 测试</h1>
+    <div id="chart-container">
+        <canvas id="test-chart"></canvas>
+    </div>
+    
+    <script>
+        console.log('Chart.js 版本:', Chart.version);
+        
+        const ctx = document.getElementById('test-chart');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1', '2', '3', '4', '5'],
+                datasets: [{
+                    data: [10, 20, 15, 25, 30],
+                    borderColor: '#22d3ee',
+                    backgroundColor: 'rgba(34, 211, 238, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: { legend: { display: false } }
+            }
+        });
+        
+        console.log('图表创建成功:', chart);
+        
+        // 3秒后添加数据
+        setTimeout(() => {
+            chart.data.labels.push('6');
+            chart.data.datasets[0].data.push(35);
+            chart.update();
+            console.log('数据已更新');
+        }, 3000);
+    </script>
+</body>
+</html>

@@ -4,14 +4,9 @@ EventBus v2.0 测试套件
 import time
 import tempfile
 from pathlib import Path
-import sys
 
-# 添加路径
-AIOS_ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(AIOS_ROOT))
-
-from core.event import Event, EventType, create_event
-from core.event_bus import EventBus
+from aios.core.event import Event, EventType, create_event
+from aios.core.event_bus import EventBus
 
 
 def test_basic_emit_and_subscribe():

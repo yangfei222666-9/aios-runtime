@@ -1,0 +1,13 @@
+{
+  "name": "Retry Connection",
+  "error_pattern": "ConnectionError",
+  "steps": [
+    "Check network connectivity",
+    "Verify service is running",
+    "Retry with exponential backoff",
+    "Alert if still failing after 3 retries"
+  ],
+  "risk_level": "low",
+  "auto_apply": true,
+  "created_at": "2026-02-27T18:53:30.039208"
+}

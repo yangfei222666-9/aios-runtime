@@ -1,0 +1,13 @@
+{
+  "name": "Fix Permissions",
+  "error_pattern": "PermissionError",
+  "steps": [
+    "Check current file permissions",
+    "Verify user has required access",
+    "Update permissions if safe",
+    "Alert admin if elevated access needed"
+  ],
+  "risk_level": "high",
+  "auto_apply": false,
+  "created_at": "2026-02-27T18:53:30.039707"
+}

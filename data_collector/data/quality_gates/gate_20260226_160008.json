@@ -1,0 +1,21 @@
+{
+  "level": "L2",
+  "passed": true,
+  "total": 1,
+  "passed_count": 1,
+  "failed_count": 0,
+  "results": [
+    {
+      "gate": "manual_review",
+      "level": "L2",
+      "passed": true,
+      "required": false,
+      "result": {
+        "passed": true,
+        "message": "人工审核通过"
+      },
+      "timestamp": "2026-02-26T16:00:08.239101Z"
+    }
+  ],
+  "timestamp": "2026-02-26T16:00:08.239101Z"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "self_heal_agent",
+  "name": "Self-Heal Agent（比卦自愈专员）",
+  "version": "1.0.0",
+  "description": "比卦专属自愈 Agent：自动检测失败任务、从 ClawdHub 拉取最新版、执行重生、更新进化分数。比卦能量守护者。",
+  "author": "AIOS Team",
+  "hexagram_affinity": "比卦 (No.8)",
+  "capabilities": [
+    "失败任务自动重生",
+    "ClawdHub 实时拉取最新版",
+    "Self-Healing Evolution Loop 执行",
+    "进化分数自动更新",
+    "LowSuccess Regeneration 触发",
+    "资源共享模式守护"
+  ],
+  "tools": ["market_pull_latest", "spawn_and_execute", "update_evolution_score", "lancedb_store"],
+  "required_python": ">=3.10",
+  "install_command": "python aios.py market install self_heal_agent",
+  "example_usage": "python aios.py run self_heal_agent --task '修复失败任务'",
+  "tags": ["self-healing", "bigua", "evolution", "market-sync"],
+  "download_count": 0,
+  "last_updated": "2026-03-05"
+}

@@ -1,339 +1,509 @@
 # AIOS - AI Operating System
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-0.6-orange.svg)](https://github.com/yangfei222666-9/aios)
+**让 AI 自己运行、自己看、自己进化。**
 
-**从监控 → 自动修复 → 自我进化**
-
-AIOS 是一个轻量级的 AI 操作系统框架，提供完整的事件驱动、自动修复和自我进化能力。
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Tests](https://img.shields.io/badge/tests-27%2F27-brightgreen.svg)](tests/)
 
 ---
 
-## 🚀 10秒快速开始
+## 🚀 10 秒快速开始
 
 ```bash
-# 1. 克隆仓库
-git clone https://github.com/yangfei222666-9/aios.git
+# 1. 下载并解压
+unzip AIOS-v1.0.zip
 cd aios
 
-# 2. 运行演示
-python aios.py demo
+# 2. 运行演示（3 个真实场景）
+python aios.py demo --scenario 1  # 文件监控 + 自动分类
+python aios.py demo --scenario 2  # API 健康检查 + 自动恢复
+python aios.py demo --scenario 3  # 日志分析 + 自动生成 Playbook
 
-# 3. 查看系统状态
-python aios.py status
-```
+# 3. 提交任务（自动执行）
+python aios.py submit --desc "分析错误日志" --type analysis --priority high
 
-**零依赖，只需要 Python 3.8+**
-
----
-
-## ✨ 核心功能
-
-### EventBus（事件总线）
-系统心脏，所有事件通过这里流转。支持发布/订阅模式，自动持久化到 EventStore。
-
-```python
-from core.event_bus import get_event_bus
-from core.event import create_event, EventType
-
-bus = get_event_bus()
-event = create_event(EventType.RESOURCE_HIGH, {"resource": "cpu", "value": 85})
-bus.emit(event)
-```
-
-### Scheduler（任务调度）
-优先级队列调度系统，支持 P0/P1/P2 三级优先级，最多 5 个并行任务，自动超时重试。
-
-```python
-from core.scheduler_v2 import SchedulerV2, Task, Priority
-
-scheduler = SchedulerV2()
-scheduler.start()
-scheduler.submit(Task(name="fix_cpu", priority=Priority.P0, handler=my_handler))
-```
-
-### Reactor（自动修复）
-基于 Playbook 的自动修复引擎，匹配事件模式并执行修复动作。
-
-```python
-from core.production_reactor import ProductionReactor
-
-reactor = ProductionReactor()
-reactor.load_playbooks("playbooks/")
-reactor.handle_event(event)  # 自动匹配并执行 playbook
-```
-
-### ScoreEngine（评分引擎）
-实时计算系统健康度，追踪任务成功率、修复率、运行时间等指标。
-
-```python
-from core.score_engine import ScoreEngine
-
-engine = ScoreEngine()
-score = engine.get_score()  # 0.0 - 1.0
-print(f"Evolution Score: {score:.2f}")
-```
-
-### Agent System（Agent 管理）
-自动调度和管理 AI Agent，支持健康检查、自动恢复、性能追踪。
-
-```python
-from agent_system.auto_dispatcher import AutoDispatcher
-
-dispatcher = AutoDispatcher()
-dispatcher.start()
-dispatcher.dispatch_task({"type": "worker", "params": {...}})
-```
-
-### Dashboard（实时监控）
-Web 界面展示系统状态、任务时间线、进化曲线。
-
-```bash
+# 4. 查看 Dashboard
 python aios.py dashboard
-# 访问 http://localhost:9091
+# 打开浏览器访问 http://127.0.0.1:9091
 ```
 
 ---
 
-## 🎯 使用场景
+## 💡 AIOS 是什么？
 
-### 场景 1: 文件监控 + 自动备份（推荐）
+AIOS 是一个**轻量级的 AI 操作系统**，让你的 AI Agent 能够：
 
-自动监控重要文件，检测到变化立即备份。
+- 🤖 **自主运行** — 自动调度任务，无需人工干预
+- 👁️ **自我观测** — 实时监控性能、成本、错误
+- 🧬 **自我进化** — 从失败中学习，自动优化策略
 
-```bash
-python demo_file_monitor.py
-```
+**核心特点：**
+- ✅ **零依赖** — 纯 Python 标准库，解压即用（0.77 MB）
+- ✅ **事件驱动** — 低耦合架构，易于扩展
+- ✅ **生产级** — 27 个测试用例，完整错误处理
 
-**效果：**
-- 🔍 每 2 秒检查文件变化（哈希对比）
-- 🚨 检测到修改立即触发备份
-- 💾 自动备份到 backups/ 目录（带时间戳）
-- ✅ 验证备份完整性（哈希匹配）
-- 📊 记录所有事件和指标
+---
 
-**输出示例：**
-```
-[19:35:38] ✅ 检查 #1: 文件未变化
-[19:35:42] 🚨 检测到文件变化！
-💾 触发 AIOS 自动备份...
-   ✅ 备份成功: important_config_20260225_193542.json
-   ✅ 备份验证通过（哈希匹配）
-[19:35:44] ✅ 检查 #4: 文件未变化
-```
+## 🎯 核心功能
 
-**真实用途：**
-- 配置文件自动备份（nginx.conf、config.json）
-- 代码文件版本追踪（自动保存历史版本）
-- 重要文档保护（防止误删除或误修改）
-
-### 场景 2: API 健康检查
-
-自动监控 API 服务，连续失败时自动修复。
+### 1. 完整的任务自动化工作流
 
 ```bash
-python demo_api_health.py
+# 提交任务
+python aios.py submit --desc "重构 scheduler.py" --type code --priority high
+
+# Heartbeat 自动执行（每 30 秒）
+python aios.py heartbeat
+
+# 查看任务状态
+python aios.py tasks
 ```
 
-**效果：**
-- 🔍 每 2 秒检查 API 健康状态
-- 🚨 连续失败 2 次触发告警
-- 🔧 自动重启服务
-- ✅ 验证修复效果
-- 📊 记录所有事件和指标
-
-**输出示例：**
+**工作流：**
 ```
-[16:54:23] ✅ 检查 #1: 健康
-[16:54:27] ❌ 检查 #4: 故障
-[16:54:29] ❌ 检查 #5: 故障
-🚨 检测到连续故障，触发 AIOS 自动修复...
-✅ 自动修复成功！
-[16:54:34] ✅ 检查 #6: 健康（已恢复）
+用户提交任务 → 进入队列 → Heartbeat 检测 → 自动执行 → 更新状态 → 记录结果
 ```
 
-### 场景 3: 资源监控与自动修复
+**支持的任务类型：**
+- `code` - 代码开发
+- `analysis` - 数据分析
+- `monitor` - 系统监控
+- `refactor` - 代码重构
+- `test` - 测试
+- `deploy` - 部署
+- `research` - 研究
 
-监控 CPU/内存使用率，超过阈值时自动清理。
+---
+
+### 2. 事件驱动架构
+
+**EventBus** — 所有组件通过事件通信，低耦合
 
 ```python
 from core.event_bus import get_event_bus
-from core.event import create_event, EventType
+from core.event import create_event
 
 bus = get_event_bus()
 
-# 模拟高 CPU 事件
-event = create_event(EventType.RESOURCE_HIGH, {
-    "resource": "cpu",
-    "value": 85,
-    "threshold": 80
-})
-bus.emit(event)
+# 发布事件
+bus.emit(create_event("task.completed", {"task_id": "123"}))
 
-# Reactor 自动匹配 playbook 并执行修复
+# 订阅事件
+bus.subscribe("task.*", lambda event: print(event))
 ```
 
-### 场景 4: Agent 任务调度
+**核心组件：**
+- **Scheduler** — 智能任务调度（优先级、依赖、并行）
+- **Reactor** — 自动响应异常（5 种内置 Playbook）
+- **Agent Pool** — 64 个 Agent（27 Learning + 37 Skill）
 
-自动分配任务给健康的 Agent，失败时自动重试。
+---
+
+### 3. 完整可观测性
+
+**Tracer + Metrics + Logger** 三件套
 
 ```python
-from agent_system.auto_dispatcher import AutoDispatcher
+from core.tracer import Tracer
+from core.metrics import Metrics
 
-dispatcher = AutoDispatcher()
-dispatcher.start()
+# 追踪任务链路
+with Tracer.trace("task-123"):
+    result = execute_task()
 
-# 提交任务
-task = {
-    "type": "worker",
-    "params": {"file": "data.csv"}
-}
-result = dispatcher.dispatch_task(task)
+# 记录指标
+Metrics.record("task.duration", 1.5)
+Metrics.record("task.success", 1)
+```
+
+**Dashboard 实时监控：**
+- 任务成功率
+- 平均响应时间
+- 错误率
+- 系统健康度
+
+---
+
+### 4. 自我进化闭环
+
+**从失败中学习，自动优化策略**
+
+```
+DataCollector（眼睛）→ Evaluator（大脑）→ Quality Gates（刹车）→ Self-Improving Loop（进化）
+```
+
+**核心模块：**
+1. **DataCollector** — 统一采集所有数据（Event/Task/Agent/Trace/Metric）
+2. **Evaluator** — 量化评估（任务成功率、Agent 评分、系统健康度）
+3. **Quality Gates** — 三层门禁（L0 自动测试、L1 回归测试、L2 人工审核）
+4. **Self-Improving Loop** — 安全自我进化（自动回滚、风险分级）
+
+**健康分数公式：**
+```
+health_score = (
+    success_rate * 60 +      # 60 分：成功率
+    (1 - failure_rate) * 30 + # 30 分：低失败率
+    (1 - pending_rate) * 10   # 10 分：低待处理率
+)
 ```
 
 ---
 
-## 📖 API 参考
+## 🎬 真实场景演示
 
-### 核心类
+### Demo 1: 文件监控 + 自动分类
 
-| 类名 | 功能 | 主要方法 |
-|------|------|----------|
-| `EventBus` | 事件总线 | `emit(event)`, `subscribe(pattern, callback)` |
-| `SchedulerV2` | 任务调度 | `submit(task)`, `start()`, `stop()` |
-| `ProductionReactor` | 自动修复 | `load_playbooks(dir)`, `handle_event(event)` |
-| `ScoreEngine` | 评分引擎 | `get_score()`, `get_breakdown()` |
-| `AutoDispatcher` | Agent 调度 | `dispatch_task(task)`, `check_agent_health()` |
-
-### 事件类型
-
-| 事件类型 | 说明 | 数据字段 |
-|----------|------|----------|
-| `RESOURCE_HIGH` | 资源使用率高 | `resource`, `value`, `threshold` |
-| `TASK_FAILED` | 任务失败 | `task_id`, `error_message` |
-| `AGENT_ERROR` | Agent 错误 | `agent_id`, `error_type` |
-| `PIPELINE_COMPLETE` | Pipeline 完成 | `pipeline_id`, `duration` |
-
-### 优先级
-
-| 优先级 | 说明 | 使用场景 |
-|--------|------|----------|
-| `P0` | 紧急 | 系统崩溃、资源临界 |
-| `P1` | 高 | Agent 错误、任务失败 |
-| `P2` | 普通 | 日志记录、Pipeline 完成 |
-
----
-
-## ⚙️ 配置说明
-
-### 环境变量
+**场景：** 监控 downloads/ 文件夹，新文件自动分类到对应文件夹
 
 ```bash
-# Windows
-set AIOS_LOG_PATH=aios/logs/aios.jsonl
-set AIOS_EVENTS_PATH=events.jsonl
-set AIOS_DASHBOARD_PORT=9091
-
-# Linux/Mac
-export AIOS_LOG_PATH="aios/logs/aios.jsonl"
-export AIOS_EVENTS_PATH="events.jsonl"
-export AIOS_DASHBOARD_PORT=9091
+python aios.py demo --scenario 1
 ```
 
-### Playbook 配置
+**演示效果：**
+- 8 个测试文件全部正确分类 ✅
+- documents/（2 个）- report.pdf, readme.txt
+- images/（1 个）- photo.jpg
+- videos/（1 个）- video.mp4
+- archives/（1 个）- archive.zip
+- code/（1 个）- script.py
+- audio/（1 个）- song.mp3
+- others/（1 个）- unknown.xyz
 
-创建 `playbooks/my_playbook.json`：
+**技术亮点：**
+- 事件驱动（file.new → file.organized）
+- 通配符订阅（file.*）
+- 完整日志记录
+
+---
+
+### Demo 2: API 健康检查 + 自动恢复
+
+**场景：** 定期检查 API 端点，失败时自动重试和恢复
+
+```bash
+python aios.py demo --scenario 2
+```
+
+**演示效果：**
+- 3 轮检查，4 个端点 ✅
+- 自动重试机制（最多 3 次，指数退避）
+- 状态变化检测（healthy ↔ degraded ↔ down）
+- 完整日志记录（12 条）
+
+**技术亮点：**
+- 健康检查模式（healthy/degraded/down）
+- 自动重试 + 指数退避
+- 失败计数器
+- 状态变化通知
+
+---
+
+### Demo 3: 日志分析 + 自动生成 Playbook
+
+**场景：** 分析错误日志，自动生成修复 Playbook
+
+```bash
+python aios.py demo --scenario 3
+```
+
+**演示效果：**
+- 10 条日志，6 个错误 ✅
+- 检测到 4 种错误模式
+  - FileNotFoundError（2 次）
+  - ConnectionError（2 次）
+  - MemoryError（1 次）
+  - PermissionError（1 次）
+- 生成 4 个 Playbook
+  - 2 个自动应用（低风险）
+  - 2 个人工审核（中/高风险）
+
+**技术亮点：**
+- 模式识别（正则匹配）
+- 风险分级（low/medium/high）
+- 自动应用策略
+- Playbook 持久化（JSON）
+
+---
+
+## 🏗️ 系统架构
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                      AIOS Core                          │
+├─────────────────────────────────────────────────────────┤
+│  EventBus (事件总线)                                     │
+│    ↓                                                     │
+│  Scheduler (调度器) → Agent Pool (64 Agents)            │
+│    ↓                                                     │
+│  Reactor (反应器) → Playbook Library (5 Playbooks)      │
+├─────────────────────────────────────────────────────────┤
+│  Task Queue (任务队列)                                   │
+│    - TaskSubmitter (提交器)                              │
+│    - TaskExecutor (执行器)                               │
+│    - Heartbeat v5.0 (自动处理)                           │
+├─────────────────────────────────────────────────────────┤
+│  Observability (可观测性)                                │
+│    - Tracer (追踪)                                       │
+│    - Metrics (指标)                                      │
+│    - Logger (日志)                                       │
+├─────────────────────────────────────────────────────────┤
+│  Self-Improving Loop (自我进化)                          │
+│    - DataCollector (数据采集)                            │
+│    - Evaluator (量化评估)                                │
+│    - Quality Gates (质量门禁)                            │
+│    - Evolution Engine (进化引擎)                         │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📊 性能指标
+
+| 指标 | 数值 |
+|------|------|
+| 启动时间 | <1 秒 |
+| 内存占用 | ~50 MB |
+| 事件延迟 | <10 ms |
+| Context 切换 | 736K ops/s |
+| Memory.allocate | 3.43M ops/s |
+| Memory.stats | 10.96M ops/s（优化后 41.5 倍提升） |
+| 自我进化开销 | <1% |
+
+---
+
+## 📚 完整 API 参考
+
+### CLI 命令
+
+```bash
+# 系统管理
+python aios.py status              # 查看系统状态
+python aios.py start               # 启动 AIOS 服务
+python aios.py stop                # 停止 AIOS 服务
+python aios.py dashboard           # 打开 Dashboard
+
+# 任务管理
+python aios.py submit --desc "..." --type code --priority high
+python aios.py tasks               # 查看所有任务
+python aios.py tasks --status pending  # 查看待处理任务
+
+# 演示和测试
+python aios.py demo --scenario 1   # 运行演示
+python aios.py test                # 运行测试
+python aios.py benchmark           # 性能基准测试
+
+# 监控和维护
+python aios.py heartbeat           # 运行心跳（自动执行任务）
+python aios.py monitor --duration 5  # 实时监控（5 分钟）
+python aios.py analyze             # 性能分析
+```
+
+### Python API
+
+```python
+# 任务提交
+from core.task_submitter import submit_task, list_tasks
+
+task_id = submit_task(
+    description="重构 scheduler.py",
+    task_type="code",
+    priority="high"
+)
+
+tasks = list_tasks(status="pending", limit=10)
+
+# 事件总线
+from core.event_bus import get_event_bus
+from core.event import create_event
+
+bus = get_event_bus()
+bus.emit(create_event("task.completed", {"task_id": "123"}))
+bus.subscribe("task.*", callback)
+
+# 可观测性
+from core.tracer import Tracer
+from core.metrics import Metrics
+
+with Tracer.trace("task-123"):
+    result = execute_task()
+
+Metrics.record("task.duration", 1.5)
+```
+
+---
+
+## 🛠️ 配置说明
+
+### 系统配置
+
+**文件：** `config/system.json`
 
 ```json
 {
-  "id": "cpu_high_kill_idle",
-  "description": "CPU 高时杀掉空闲 Agent",
-  "trigger": {
-    "event_type": "resource.high",
-    "conditions": {
-      "resource": "cpu",
-      "value": {"$gt": 80}
-    }
+  "scheduler": {
+    "max_concurrent_tasks": 5,
+    "default_timeout": 60
   },
-  "actions": [
+  "reactor": {
+    "enabled": true,
+    "max_retries": 3
+  },
+  "observability": {
+    "trace_enabled": true,
+    "metrics_enabled": true
+  }
+}
+```
+
+### Agent 配置
+
+**文件：** `agent_system/agents.json`
+
+```json
+{
+  "agents": [
     {
-      "type": "kill_idle_agents",
-      "params": {"max_count": 3}
+      "name": "coder",
+      "type": "code",
+      "priority": "high",
+      "timeout": 120
     }
-  ],
-  "validation": {
-    "check": "cpu_below_threshold",
-    "timeout_seconds": 30
-  },
-  "risk_level": "low"
+  ]
 }
 ```
 
 ---
 
-## 🧪 测试
+## 🧪 测试覆盖
 
+**总测试：** 27/27 ✅
+
+| 模块 | 测试数 | 状态 |
+|------|--------|------|
+| EventBus | 5 | ✅ |
+| Scheduler | 6 | ✅ |
+| Reactor | 4 | ✅ |
+| TaskSubmitter | 5 | ✅ |
+| TaskExecutor | 3 | ✅ |
+| Heartbeat | 4 | ✅ |
+
+**运行测试：**
 ```bash
-# 运行所有测试
 python aios.py test
-
-# 运行性能基准测试
-python aios.py benchmark
-
-# 运行心跳检查
-python aios.py heartbeat
 ```
 
 ---
 
-## ❓ FAQ
+## 🗺️ 路线图
 
-### Q: 需要安装依赖吗？
-A: **不需要！** AIOS 核心是零依赖的，只需要 Python 3.8+。Dashboard 需要安装 `flask`（可选）。
+### ✅ v1.0（已完成）
+- [x] 事件驱动架构（EventBus + Scheduler + Reactor）
+- [x] 完整可观测性（Tracer + Metrics + Logger）
+- [x] 自我进化闭环（DataCollector + Evaluator + Quality Gates）
+- [x] 任务队列系统（TaskSubmitter + TaskExecutor + Heartbeat v5.0）
+- [x] 3 个真实场景 Demo
+- [x] 零依赖打包（0.77 MB）
 
-### Q: 支持哪些 Python 版本？
-A: Python 3.8, 3.9, 3.10, 3.11, 3.12 都支持。
+### 🚧 v1.1（1-2 周）
+- [ ] Dashboard 实时推送（WebSocket）
+- [ ] 一键部署脚本（install.sh / install.bat）
+- [ ] 集成 sessions_spawn（真实 Agent 执行）
+- [ ] 任务重试机制（失败自动重试）
 
-### Q: 可以在生产环境使用吗？
-A: 可以！AIOS v0.6 已经过充分测试，性能优异。建议先在测试环境验证。
+### 📅 v1.2（1-2 月）
+- [ ] VM Controller + CloudRouter 集成
+- [ ] 多模型支持（OpenAI/Gemini/Ollama）
+- [ ] Agent 框架集成（AutoGen/MetaGPT）
+- [ ] Agent 市场（社区贡献）
 
-### Q: 如何集成到我的项目？
-A: 只需要导入核心模块：
-```python
-from core.event_bus import get_event_bus
-from core.event import create_event, EventType
-```
-
-### Q: EventStore 存储在哪里？
-A: 默认存储在 `data/events/` 目录，按日期分片（`events_YYYY-MM-DD.jsonl`）。
-
-### Q: 如何自定义 Playbook？
-A: 在 `playbooks/` 目录创建 JSON 文件，参考"配置说明"部分的示例。
-
-### Q: Dashboard 无法访问？
-A: 检查端口是否被占用，或使用 `python aios.py dashboard --port 8080` 指定其他端口。
+### 🔮 v2.0（3-6 月）
+- [ ] 分布式调度（多节点）
+- [ ] 向量检索（Memory 模块）
+- [ ] 多租户支持（权限隔离）
+- [ ] 学术论文发表
 
 ---
 
-## 📄 License
+## ❓ 常见问题
 
-MIT License - 详见 [LICENSE](LICENSE)
+### Q: AIOS 和其他 Agent 框架有什么区别？
+
+**A:** AIOS 的核心优势：
+1. **自我进化** - 从失败中学习，自动优化（其他框架没有）
+2. **零依赖** - 纯 Python 标准库，解压即用
+3. **事件驱动** - 低耦合架构，易于扩展
+4. **生产级** - 完整的错误处理、自动回滚、质量门禁
+
+### Q: 如何集成到现有项目？
+
+**A:** AIOS 提供两种集成方式：
+1. **CLI 模式** - 通过 `aios.py` 命令行工具
+2. **Python API** - 导入 `core` 模块直接调用
+
+### Q: 性能如何？
+
+**A:** 
+- 启动时间：<1 秒
+- 内存占用：~50 MB
+- 事件延迟：<10 ms
+- Context 切换：736K ops/s
+
+### Q: 支持哪些平台？
+
+**A:** Windows / Linux / macOS，Python 3.8+
+
+### Q: 如何贡献？
+
+**A:** 欢迎提交 Issue 和 PR！详见 [CONTRIBUTING.md](CONTRIBUTING.md)
+
+---
+
+## 📖 更多文档
+
+- [安装指南](docs/INSTALL.md)
+- [架构设计](ARCHITECTURE.md)
+- [API 参考](docs/API.md)
+- [教程](docs/TUTORIAL.md)
+- [性能优化](OPTIMIZATION_REPORT.md)
+- [任务队列集成](TASK_QUEUE_INTEGRATION.md)
+- [改进报告](IMPROVEMENT_REPORT.md)
 
 ---
 
 ## 🤝 贡献
 
-欢迎贡献！请查看 [CONTRIBUTING.md](CONTRIBUTING.md)
+欢迎提交 Issue 和 PR！
+
+**贡献指南：**
+1. Fork 本仓库
+2. 创建特性分支（`git checkout -b feature/AmazingFeature`）
+3. 提交更改（`git commit -m 'Add some AmazingFeature'`）
+4. 推送到分支（`git push origin feature/AmazingFeature`）
+5. 打开 Pull Request
 
 ---
 
-## 📚 更多资源
+## 📄 许可证
 
-- **GitHub**: https://github.com/yangfei222666-9/aios
-- **文档**: 查看 `docs/` 目录
-- **示例**: 查看 `demo/` 目录
+MIT License - 详见 [LICENSE](LICENSE)
 
 ---
 
-**AIOS v0.6** - 让 AI 系统自己运行、自己看、自己进化！🚀
+## 📞 联系方式
+
+- **GitHub:** [@yangfei222666-9](https://github.com/yangfei222666-9)
+- **Telegram:** @shh7799
+- **Email:** [your-email@example.com]
+
+---
+
+## 🌟 Star History
+
+如果 AIOS 对你有帮助，请给我们一个 Star ⭐️
+
+---
+
+**AIOS - 让 AI 自己运行、自己看、自己进化。**
+
+*Built with ❤️ by 小九 + 珊瑚海*

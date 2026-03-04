@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-02-26T16:23:07.820283Z",
+  "time_window_hours": 24,
+  "system": {
+    "health_score": 85.04,
+    "grade": "A",
+    "time_window_hours": 24,
+    "events": {
+      "total": 87,
+      "error": 0,
+      "warning": 17,
+      "error_rate": 0.0
+    },
+    "tasks": {
+      "total": 27,
+      "success": 22,
+      "failed": 5,
+      "success_rate": 0.8148148148148148,
+      "avg_duration_ms": 5545.454545454545,
+      "avg_cost_usd": 0.02,
+      "time_window_hours": 24,
+      "task_type": null
+    },
+    "agents": {
+      "total": 1,
+      "avg_score": 81.13
+    }
+  },
+  "tasks": {
+    "total": 27,
+    "success": 22,
+    "failed": 5,
+    "success_rate": 0.8148148148148148,
+    "avg_duration_ms": 5545.454545454545,
+    "avg_cost_usd": 0.02,
+    "time_window_hours": 24,
+    "task_type": null
+  },
+  "agents": [
+    {
+      "agent_id": "coder",
+      "status": "idle",
+      "stats": {
+        "tasks_total": 10,
+        "tasks_success": 7,
+        "tasks_failed": 3,
+        "avg_duration_ms": 2600.0
+      },
+      "success_rate": 0.7,
+      "avg_duration_ms": 2600.0,
+      "total_cost_usd": 0.0,
+      "score": 81.13,
+      "grade": "A"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "perplexity_researcher",
+  "name": "Perplexity_Researcher",
+  "type": "research",
+  "role": "Deep Research Specialist",
+  "goal": "Conduct comprehensive research using Perplexity AI with source citations and multi-round verification",
+  "backstory": "An expert research agent that uses Perplexity AI to conduct deep, well-cited research. Specializes in multi-round searches, source verification, and comprehensive report generation.",
+  "skill_path": "C:\\Users\\A\\.openclaw\\workspace\\skills\\perplexity-search",
+  "capabilities": [
+    "multi_round_search",
+    "source_verification",
+    "citation_tracking",
+    "report_generation",
+    "conversational_search"
+  ],
+  "tools": ["perplexity-search"],
+  "workflow": {
+    "1": "Understand research question and scope",
+    "2": "Break down into sub-questions",
+    "3": "Conduct multi-round searches with Perplexity",
+    "4": "Verify sources and cross-reference",
+    "5": "Synthesize findings into comprehensive report"
+  },
+  "triggers": [
+    "研究",
+    "深度分析",
+    "调研",
+    "research",
+    "investigate",
+    "analyze in depth"
+  ],
+  "enabled": true,
+  "schedule": "on_demand",
+  "priority": "high",
+  "config": {
+    "default_model": "sonar-pro",
+    "default_depth": 3,
+    "max_depth": 5,
+    "include_citations": true,
+    "verify_sources": true
+  },
+  "created_at": "2026-02-27T13:37:00.000000"
+}

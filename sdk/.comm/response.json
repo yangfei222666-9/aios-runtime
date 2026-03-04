@@ -1,0 +1,9 @@
+{
+  "action": "done",
+  "result": {
+    "success": true,
+    "file_created": "test_sp_v6.txt",
+    "content": "Superpowers v6 测试成功！"
+  },
+  "reasoning": "文件已成功创建，任务完成"
+}

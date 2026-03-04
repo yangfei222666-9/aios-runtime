@@ -1,0 +1,7 @@
+{
+  "action": "done",
+  "result": {
+    "status": "completed"
+  },
+  "reasoning": "Task completed (fallback)"
+}

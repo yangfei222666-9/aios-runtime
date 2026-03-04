@@ -1,0 +1,45 @@
+{
+  "task_id": "plan_1772125533512",
+  "original_task": "搜索 GitHub 上的 AIOS 项目，然后分析架构，最后写报告",
+  "subtasks": [
+    {
+      "id": "subtask_1",
+      "description": "搜索 GitHub 上的 AIOS 项目，",
+      "type": "research",
+      "priority": "normal",
+      "dependencies": [],
+      "estimated_time": 120,
+      "status": "pending",
+      "result": null,
+      "created_at": 1772125533.5121908
+    },
+    {
+      "id": "subtask_2",
+      "description": "分析架构，",
+      "type": "analysis",
+      "priority": "normal",
+      "dependencies": [
+        "subtask_1"
+      ],
+      "estimated_time": 180,
+      "status": "pending",
+      "result": null,
+      "created_at": 1772125533.5121908
+    },
+    {
+      "id": "subtask_3",
+      "description": "写报告",
+      "type": "monitor",
+      "priority": "normal",
+      "dependencies": [
+        "subtask_2"
+      ],
+      "estimated_time": 60,
+      "status": "pending",
+      "result": null,
+      "created_at": 1772125533.5121908
+    }
+  ],
+  "strategy": "sequential",
+  "created_at": 1772125533.5121908
+}

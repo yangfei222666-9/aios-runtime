@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>AIOS Control Center v3.2</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+body { background: #0a0a0f; font-family: system-ui; }
+.glass { background: rgba(15,23,42,0.92); backdrop-filter: blur(28px); border: 1px solid rgba(148,163,184,0.3); }
+.neon { text-shadow: 0 0 35px #67e8f9; }
+.kpi-num { transition: all 1.2s cubic-bezier(0.25, 0.1, 0.25, 1); }
+.agent-card { transition: all 0.3s ease; }
+.agent-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(103,232,249,0.15); }
+.event { transition: all 0.4s ease; }
+.event.new { animation: flash 1.5s ease; }
+@keyframes flash { 0% { background: rgba(234,179,8,0.25); } 100% { background: transparent; } }
+</style>
+</head>
+<body class="text-slate-100 p-8">
+<div class="max-w-7xl mx-auto">
+<!-- Header -->
+<div class="flex justify-between items-center mb-12">
+<div class="flex items-center gap-6">
+<span class="text-7xl">🚀</span>
+<div>
+<h1 class="text-6xl font-bold neon tracking-tighter">AIOS v3.2</h1>
+<p class="text-cyan-300 text-2xl -mt-1">自我进化操作系统 · 实时控制中心</p>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-emerald-500/10 px-8 py-5 rounded-3xl border border-emerald-400">
+<div id="live-dot" class="w-5 h-5 bg-emerald-400 rounded-full animate-ping"></div>
+<span class="font-bold text-emerald-400 text-2xl">LIVE</span>
+<span id="last-update" class="text-slate-400 text-lg">刚刚</span>
+</div>
+</div>
+
+<!-- KPI -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+<div class="glass p-8 rounded-3xl text-center">
+<p class="text-slate-400 text-sm">活跃 Agent</p>
+<p id="active-agents" class="kpi-num text-7xl font-bold mt-3 text-white">0</p>
+</div>
+<div class="glass p-8 rounded-3xl text-center">
+<p class="text-slate-400 text-sm">Evolution Score</p>
+<p id="evolution-score" class="kpi-num text-7xl font-bold mt-3 text-emerald-400">0</p>
+</div>
+<div class="glass p-8 rounded-3xl text-center">
+<p class="text-slate-400 text-sm">今日改进</p>
+<p id="improvements" class="kpi-num text-7xl font-bold mt-3 text-violet-400">0</p>
+</div>
+<div class="glass p-8 rounded-3xl text-center">
+<p class="text-slate-400 text-sm">成功率</p>
+<p id="success-rate" class="kpi-num text-7xl font-bold mt-3 text-cyan-400">0%</p>
+</div>
+</div>
+
+<div class="grid grid-cols-1 gap-8">
+<!-- 实时趋势 -->
+<div class="glass p-8 rounded-3xl">
+<h3 class="text-2xl font-semibold mb-8 flex items-center gap-3"><i class="fa-solid fa-chart-line text-cyan-400"></i> 实时趋势</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<p class="text-slate-400 mb-4">成功率曲线</p>
+<canvas id="successChart" height="120"></canvas>
+</div>
+<div>
+<p class="text-slate-400 mb-4">Evolution Score 走势</p>
+<canvas id="evolutionChart" height="120"></canvas>
+</div>
+</div>
+</div>
+
+<!-- Agent 实时状态 - 优化版横向卡片 -->
+<div class="glass p-8 rounded-3xl">
+<h3 class="text-2xl font-semibold mb-6 flex items-center gap-3"><i class="fa-solid fa-robot"></i> Agent 实时状态</h3>
+<div id="agent-list" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
+</div>
+
+<!-- 实时事件流 -->
+<div class="glass p-8 rounded-3xl">
+<h3 class="text-2xl font-semibold mb-6 flex items-center gap-3"><i class="fa-solid fa-bolt text-amber-400"></i> 实时事件流</h3>
+<div id="event-stream" class="space-y-4 max-h-[520px] overflow-y-auto pr-3"></div>
+</div>
+</div>
+</div>
+
+<script>
+// Charts
+const successChart = new Chart(document.getElementById('successChart'), {
+type: 'line',
+data: {
+labels: [],
+datasets: [{
+label: '成功率',
+data: [],
+borderColor: '#22d3ee',
+backgroundColor: 'rgba(34, 211, 238, 0.1)',
+tension: 0.4,
+borderWidth: 3,
+fill: true,
+pointRadius: 4,
+pointHoverRadius: 6,
+pointBackgroundColor: '#22d3ee'
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: true,
+plugins: {
+tooltip: { mode: 'index' },
+legend: { display: false }
+},
+scales: {
+y: { 
+min: 95, 
+max: 100,
+ticks: { color: '#94a3b8' },
+grid: { color: 'rgba(148, 163, 184, 0.1)' }
+},
+x: {
+ticks: { color: '#94a3b8' },
+grid: { display: false }
+}
+}
+}
+});
+
+const evolutionChart = new Chart(document.getElementById('evolutionChart'), {
+type: 'line',
+data: {
+labels: [],
+datasets: [{
+label: 'Evolution Score',
+data: [],
+borderColor: '#10b981',
+backgroundColor: 'rgba(16, 185, 129, 0.1)',
+tension: 0.4,
+borderWidth: 3,
+fill: true,
+pointRadius: 4,
+pointHoverRadius: 6,
+pointBackgroundColor: '#10b981'
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: true,
+plugins: {
+tooltip: { mode: 'index' },
+legend: { display: false }
+},
+scales: {
+y: { 
+min: 75, 
+max: 100,
+ticks: { color: '#94a3b8' },
+grid: { color: 'rgba(148, 163, 184, 0.1)' }
+},
+x: {
+ticks: { color: '#94a3b8' },
+grid: { display: false }
+}
+}
+}
+});
+
+// CountUp 动画
+function countUp(el, target, suffix = '') {
+let start = 0;
+const duration = 1200;
+const step = target / (duration / 16);
+const timer = setInterval(() => {
+start += step;
+if (start >= target) {
+start = target;
+clearInterval(timer);
+}
+el.textContent = Math.floor(start) + suffix;
+}, 16);
+}
+
+// SSE
+const eventSource = new EventSource('/api/sse');
+
+eventSource.onmessage = function(e) {
+const data = JSON.parse(e.data);
+
+// KPI 动画更新
+countUp(document.getElementById('active-agents'), data.active_agents);
+countUp(document.getElementById('evolution-score'), data.evolution_score);
+countUp(document.getElementById('improvements'), data.improvements_today);
+countUp(document.getElementById('success-rate'), data.success_rate, '%');
+
+// 趋势图
+successChart.data.labels = Array.from({length: data.trend_success.length}, (_, i) => `T-${data.trend_success.length - i}`);
+successChart.data.datasets[0].data = data.trend_success;
+successChart.update();
+
+evolutionChart.data.labels = successChart.data.labels;
+evolutionChart.data.datasets[0].data = data.trend_evolution;
+evolutionChart.update();
+
+// Agent 卡片 - 丰富信息
+let agentHTML = '';
+data.agents.forEach(a => {
+const taskColor = a.tasks > 0 ? 'text-emerald-400' : 'text-slate-500';
+const statusText = a.tasks > 0 ? '运行中' : '空闲';
+agentHTML += `
+<div class="agent-card glass p-6 rounded-3xl">
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex items-center gap-3">
+<div class="w-4 h-4 bg-emerald-400 rounded-full ring-2 ring-emerald-400/30"></div>
+<span class="font-bold text-xl">${a.name}</span>
+</div>
+<div class="text-slate-400 text-sm mt-1">${a.model}</div>
+</div>
+<div class="text-right">
+<div class="text-xs px-3 py-1 bg-emerald-400/10 text-emerald-400 rounded-full">${statusText}</div>
+</div>
+</div>
+<div class="flex justify-between items-end mt-6">
+<div>
+<div class="text-5xl font-mono font-bold text-emerald-400">${a.success_rate}<span class="text-xl">%</span></div>
+</div>
+<div class="text-right">
+<div class="text-4xl font-mono ${taskColor}">${a.tasks}</div>
+<div class="text-xs text-slate-400 -mt-1">tasks</div>
+</div>
+</div>
+<div class="mt-4 h-2 bg-zinc-700 rounded-full overflow-hidden">
+<div class="h-2 bg-gradient-to-r from-emerald-400 to-cyan-400" style="width: ${a.success_rate}%"></div>
+</div>
+</div>`;
+});
+document.getElementById('agent-list').innerHTML = agentHTML;
+
+// 事件流（显示真实事件列表）
+const stream = document.getElementById('event-stream');
+
+if (data.events && data.events.length > 0) {
+stream.innerHTML = '';
+data.events.reverse().forEach(evt => {
+const icon = evt.color === 'emerald' || evt.color === 'cyan' ? '✅' : evt.color === 'amber' ? '⚡' : evt.color === 'violet' ? '🔮' : '🔄';
+
+// 格式化真实时间
+const eventTime = new Date(evt.timestamp);
+const timeStr = eventTime.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+const eventHTML = `
+<div class="event new flex gap-6 p-6 glass rounded-3xl border-l-4 border-${evt.color}-500">
+<div class="text-3xl">${icon}</div>
+<div class="flex-1">
+<div class="text-slate-400 text-sm">${timeStr}</div>
+<div class="text-lg">${evt.event}</div>
+</div>
+</div>`;
+stream.innerHTML += eventHTML;
+});
+} else if (stream.children.length === 0) {
+stream.innerHTML = '<div class="text-slate-500 text-center py-20">暂无新事件<br><span class="text-xs">系统运行平稳，稍后会有更新</span></div>';
+}
+
+document.getElementById('last-update').textContent = '刚刚';
+};
+</script>
+</body>
+</html>

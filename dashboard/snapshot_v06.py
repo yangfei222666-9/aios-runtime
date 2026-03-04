@@ -43,16 +43,20 @@ def get_scheduler_v06_stats() -> Dict[str, Any]:
     try:
         from core.production_scheduler import get_scheduler
         scheduler = get_scheduler()
-        status = scheduler.get_status()
+        stats = scheduler.get_stats()
+        
+        # 适配新 API（v2.3）
+        # 旧版 API: get_status() 返回 {"queue_size", "running_tasks", "max_concurrent", ...}
+        # 新版 API: get_stats() 返回 {"queued", "running", "total_submitted", ...}
         
         # 基础数据
         result = {
-            "queue_ready": status["queue_size"],
-            "running": status["running_tasks"],
+            "queue_ready": stats.get("queued", 0),
+            "running": stats.get("running", 0),
             "retrying": 0,  # TODO: 从任务列表统计
-            "dlq": len(scheduler.failed_tasks),
-            "concurrency_used": status["running_tasks"],
-            "concurrency_max": status["max_concurrent"],
+            "dlq": stats.get("total_failed", 0),
+            "concurrency_used": stats.get("running", 0),
+            "concurrency_max": stats.get("config", {}).get("max_concurrent", 5),
             "exec_p95_ms": 0.0,  # TODO: 从完成任务计算
             "wait_p95_ms": 0.0,  # TODO: 从任务时间戳计算
             "retry_rate_1h": 0.0,  # TODO: 从统计计算
@@ -61,31 +65,24 @@ def get_scheduler_v06_stats() -> Dict[str, Any]:
                 "status": "closed",
                 "failures": 0,
                 "last_failure": None
-            }
+            },
+            # 新增：v2.3 特性
+            "scheduler_policy": stats.get("policy", "priority"),
+            "cpu_binding_enabled": stats.get("cpu_binding_enabled", False),
         }
         
-        # 计算 p95 延迟
-        if scheduler.completed_tasks:
-            durations = [t["duration"] * 1000 for t in scheduler.completed_tasks]
-            durations.sort()
-            p95_idx = int(len(durations) * 0.95)
-            result["exec_p95_ms"] = durations[p95_idx] if p95_idx < len(durations) else 0
+        # 注意：completed_tasks 和 failed_tasks 在新版中不直接暴露
+        # 如果需要详细信息，需要通过其他方式获取
+        # p95 延迟和重试率暂时使用默认值
         
-        # 计算重试率
-        total = status["stats"]["total_submitted"]
-        retries = status["stats"]["total_failed"]  # 简化：失败=重试
+        # 计算重试率（从统计数据）
+        total = stats.get("total_submitted", 0)
+        retries = stats.get("total_failed", 0)
         if total > 0:
             result["retry_rate_1h"] = retries / total
         
-        # DLQ 新增（最近 1 小时）
-        now = datetime.now()
-        one_hour_ago = now - timedelta(hours=1)
-        dlq_new = 0
-        for task in scheduler.failed_tasks:
-            failed_at = datetime.fromisoformat(task["failed_at"])
-            if failed_at > one_hour_ago:
-                dlq_new += 1
-        result["dlq_new_1h"] = dlq_new
+        # DLQ 新增（最近 1 小时）- 暂时使用总失败数
+        result["dlq_new_1h"] = stats.get("total_failed", 0)
         
         return result
     

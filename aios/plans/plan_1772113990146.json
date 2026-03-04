@@ -1,0 +1,19 @@
+{
+  "task_id": "plan_1772113990146",
+  "original_task": "帮我规划一次周末去京都的旅行，包括搜索机票、预订酒店、计算预算",
+  "subtasks": [
+    {
+      "id": "subtask_1",
+      "description": "帮我规划一次周末去京都的旅行，包括搜索机票、预订酒店、计算预算",
+      "type": "research",
+      "priority": "normal",
+      "dependencies": [],
+      "estimated_time": 120,
+      "status": "pending",
+      "result": null,
+      "created_at": 1772113990.1466868
+    }
+  ],
+  "strategy": "parallel",
+  "created_at": 1772113990.1466868
+}

@@ -1,0 +1,2136 @@
+{
+  "latest_agent.py": {
+    "value": {
+      "file": "C:\\Users\\A\\.openclaw\\workspace\\aios\\agents\\code_reviewer\\agent.py",
+      "filename": "agent.py",
+      "score": 87,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 419,
+        "functions": 11,
+        "classes": 1,
+        "imports": 9,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 41,
+          "msg": "Function 'analyze_syntax' is 101 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 186,
+          "msg": "Function 'review_file' is 76 lines (>50), consider splitting"
+        },
+        {
+          "severity": "info",
+          "line": 114,
+          "msg": "TODO/FIXME: if \"todo\" in source_lower or \"fixme\" in source_lower:"
+        },
+        {
+          "severity": "info",
+          "line": 117,
+          "msg": "TODO/FIXME: if \"todo\" in ll or \"fixme\" in ll:"
+        },
+        {
+          "severity": "info",
+          "line": 121,
+          "msg": "TODO/FIXME: \"msg\": f\"TODO/FIXME: {line.strip()[:80]}\","
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 2,
+        "info": 3
+      },
+      "elapsed_ms": 14,
+      "timestamp": 1772082878.0746603,
+      "_ts": 1772082878.07566,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772082878.07566
+  },
+  "latest_action_engine.py": {
+    "value": {
+      "file": "core\\action_engine.py",
+      "filename": "action_engine.py",
+      "score": 90,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 797,
+        "functions": 34,
+        "classes": 6,
+        "imports": 11,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 499,
+          "msg": "Function 'run_queue' is 137 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 30,
+      "timestamp": 1772083454.839034,
+      "_ts": 1772083454.8405328,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.8405328
+  },
+  "latest_agent_arena.py": {
+    "value": {
+      "file": "core\\agent_arena.py",
+      "filename": "agent_arena.py",
+      "score": 85,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 455,
+        "functions": 13,
+        "classes": 3,
+        "imports": 6,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 63,
+          "msg": "Function 'aios_challenge_agent' is 60 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 127,
+          "msg": "Function 'agent_challenge_aios' is 59 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 279,
+          "msg": "Function '_update_leaderboard' is 57 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 3,
+        "info": 0
+      },
+      "elapsed_ms": 16,
+      "timestamp": 1772083454.8552139,
+      "_ts": 1772083454.8562157,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.8562157
+  },
+  "latest_agent_state_machine.py": {
+    "value": {
+      "file": "core\\agent_state_machine.py",
+      "filename": "agent_state_machine.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 222,
+        "functions": 10,
+        "classes": 2,
+        "imports": 6,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 14,
+      "timestamp": 1772083454.870763,
+      "_ts": 1772083454.8712637,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.8712637
+  },
+  "latest_app_alias.py": {
+    "value": {
+      "file": "core\\app_alias.py",
+      "filename": "app_alias.py",
+      "score": 95,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 233,
+        "functions": 6,
+        "classes": 0,
+        "imports": 2,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 81,
+          "msg": "Function 'resolve' is 87 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083454.8818138,
+      "_ts": 1772083454.882313,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.882313
+  },
+  "latest_budget.py": {
+    "value": {
+      "file": "core\\budget.py",
+      "filename": "budget.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 397,
+        "functions": 17,
+        "classes": 0,
+        "imports": 10,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 15,
+      "timestamp": 1772083454.8943765,
+      "_ts": 1772083454.8948805,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.8948805
+  },
+  "latest_circuit_breaker.py": {
+    "value": {
+      "file": "core\\circuit_breaker.py",
+      "filename": "circuit_breaker.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 356,
+        "functions": 12,
+        "classes": 1,
+        "imports": 12,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 16,
+      "timestamp": 1772083454.903391,
+      "_ts": 1772083454.9044049,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.9049098
+  },
+  "latest_config.py": {
+    "value": {
+      "file": "core\\config.py",
+      "filename": "config.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 92,
+        "functions": 8,
+        "classes": 0,
+        "imports": 2,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083454.9114194,
+      "_ts": 1772083454.9119205,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.9119205
+  },
+  "latest_deadloop_breaker.py": {
+    "value": {
+      "file": "core\\deadloop_breaker.py",
+      "filename": "deadloop_breaker.py",
+      "score": 85,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 490,
+        "functions": 12,
+        "classes": 1,
+        "imports": 6,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 246,
+          "msg": "Function 'check' is 100 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 359,
+          "msg": "Function 'format_result' is 90 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 69,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 3,
+        "info": 0
+      },
+      "elapsed_ms": 14,
+      "timestamp": 1772083454.921953,
+      "_ts": 1772083454.9224505,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.9224505
+  },
+  "latest_decision_log.py": {
+    "value": {
+      "file": "core\\decision_log.py",
+      "filename": "decision_log.py",
+      "score": 95,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 357,
+        "functions": 10,
+        "classes": 0,
+        "imports": 11,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 144,
+          "msg": "Function 'query_decisions' is 55 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083454.9309807,
+      "_ts": 1772083454.9314835,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.9314835
+  },
+  "latest_dispatcher.py": {
+    "value": {
+      "file": "core\\dispatcher.py",
+      "filename": "dispatcher.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 251,
+        "functions": 12,
+        "classes": 0,
+        "imports": 6,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 16,
+      "timestamp": 1772083454.9380155,
+      "_ts": 1772083454.938516,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.938516
+  },
+  "latest_engine.py": {
+    "value": {
+      "file": "core\\engine.py",
+      "filename": "engine.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 256,
+        "functions": 14,
+        "classes": 0,
+        "imports": 4,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083454.946523,
+      "_ts": 1772083454.947023,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.947023
+  },
+  "latest_event.py": {
+    "value": {
+      "file": "core\\event.py",
+      "filename": "event.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 163,
+        "functions": 4,
+        "classes": 2,
+        "imports": 5,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 14,
+      "timestamp": 1772083454.9550405,
+      "_ts": 1772083454.9560397,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.9560397
+  },
+  "latest_event_bus.py": {
+    "value": {
+      "file": "core\\event_bus.py",
+      "filename": "event_bus.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 228,
+        "functions": 14,
+        "classes": 1,
+        "imports": 10,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083454.959041,
+      "_ts": 1772083454.960039,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.960039
+  },
+  "latest_event_bus_optimized.py": {
+    "value": {
+      "file": "core\\event_bus_optimized.py",
+      "filename": "event_bus_optimized.py",
+      "score": 95,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 186,
+        "functions": 9,
+        "classes": 1,
+        "imports": 11,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 72,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 15,
+      "timestamp": 1772083454.9675646,
+      "_ts": 1772083454.9685686,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.9685686
+  },
+  "latest_event_store.py": {
+    "value": {
+      "file": "core\\event_store.py",
+      "filename": "event_store.py",
+      "score": 90,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 284,
+        "functions": 11,
+        "classes": 1,
+        "imports": 8,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 149,
+          "msg": "Function 'migrate_from_single_file' is 56 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 202,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 2,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083454.9771018,
+      "_ts": 1772083454.9776015,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.9776015
+  },
+  "latest_evolution.py": {
+    "value": {
+      "file": "core\\evolution.py",
+      "filename": "evolution.py",
+      "score": 65,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 248,
+        "functions": 6,
+        "classes": 0,
+        "imports": 4,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 46,
+          "msg": "Function 'compute_reactor_score' is 77 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 187,
+          "msg": "Function 'cli' is 57 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 42,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        },
+        {
+          "severity": "warning",
+          "line": 179,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        },
+        {
+          "severity": "warning",
+          "line": 66,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        },
+        {
+          "severity": "warning",
+          "line": 84,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        },
+        {
+          "severity": "warning",
+          "line": 104,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 7,
+        "info": 0
+      },
+      "elapsed_ms": 16,
+      "timestamp": 1772083454.9851391,
+      "_ts": 1772083454.9861414,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.9861414
+  },
+  "latest_executor.py": {
+    "value": {
+      "file": "core\\executor.py",
+      "filename": "executor.py",
+      "score": 90,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 299,
+        "functions": 10,
+        "classes": 0,
+        "imports": 5,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 195,
+          "msg": "Function 'execute' is 53 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 292,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 2,
+        "info": 0
+      },
+      "elapsed_ms": 14,
+      "timestamp": 1772083454.9956777,
+      "_ts": 1772083454.996182,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083454.9966812
+  },
+  "latest_feedback_loop.py": {
+    "value": {
+      "file": "core\\feedback_loop.py",
+      "filename": "feedback_loop.py",
+      "score": 80,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 298,
+        "functions": 6,
+        "classes": 0,
+        "imports": 4,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 67,
+          "msg": "Function 'analyze_playbook_patterns' is 60 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 133,
+          "msg": "Function 'generate_suggestions' is 90 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 236,
+          "msg": "Function 'cli' is 58 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 52,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 4,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.0052054,
+      "_ts": 1772083455.006208,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.006208
+  },
+  "latest_integrations.py": {
+    "value": {
+      "file": "core\\integrations.py",
+      "filename": "integrations.py",
+      "score": 95,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 445,
+        "functions": 18,
+        "classes": 0,
+        "imports": 9,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 373,
+          "msg": "Function 'main' is 68 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 15,
+      "timestamp": 1772083455.0159714,
+      "_ts": 1772083455.0164704,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.0169706
+  },
+  "latest_isolated_event_store.py": {
+    "value": {
+      "file": "core\\isolated_event_store.py",
+      "filename": "isolated_event_store.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 94,
+        "functions": 4,
+        "classes": 1,
+        "imports": 5,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.023491,
+      "_ts": 1772083455.0245044,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.0250084
+  },
+  "latest_learning_workflow.py": {
+    "value": {
+      "file": "core\\learning_workflow.py",
+      "filename": "learning_workflow.py",
+      "score": 90,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 513,
+        "functions": 18,
+        "classes": 1,
+        "imports": 6,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 46,
+          "msg": "Function 'record_provider_execution' is 57 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 16,
+      "timestamp": 1772083455.034026,
+      "_ts": 1772083455.0345278,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.0350287
+  },
+  "latest_llm_helper.py": {
+    "value": {
+      "file": "core\\llm_helper.py",
+      "filename": "llm_helper.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 149,
+        "functions": 5,
+        "classes": 0,
+        "imports": 2,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 14,
+      "timestamp": 1772083455.0445397,
+      "_ts": 1772083455.0450432,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.0455427
+  },
+  "latest_model_router.py": {
+    "value": {
+      "file": "core\\model_router.py",
+      "filename": "model_router.py",
+      "score": 94,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 203,
+        "functions": 5,
+        "classes": 0,
+        "imports": 2,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 82,
+          "msg": "Function 'route_model' is 95 lines (>50), consider splitting"
+        },
+        {
+          "severity": "info",
+          "line": 190,
+          "msg": "TODO/FIXME: # TODO: 从日志中统计"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 1
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.0550718,
+      "_ts": 1772083455.056076,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.0565755
+  },
+  "latest_model_router_v2.py": {
+    "value": {
+      "file": "core\\model_router_v2.py",
+      "filename": "model_router_v2.py",
+      "score": 95,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 381,
+        "functions": 18,
+        "classes": 1,
+        "imports": 6,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 60,
+          "msg": "Function 'route' is 54 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 16,
+      "timestamp": 1772083455.0605757,
+      "_ts": 1772083455.061075,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.061075
+  },
+  "latest_notification_handler.py": {
+    "value": {
+      "file": "core\\notification_handler.py",
+      "filename": "notification_handler.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 124,
+        "functions": 6,
+        "classes": 1,
+        "imports": 7,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.070588,
+      "_ts": 1772083455.0710893,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.0710893
+  },
+  "latest_orchestrator.py": {
+    "value": {
+      "file": "core\\orchestrator.py",
+      "filename": "orchestrator.py",
+      "score": 95,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 323,
+        "functions": 13,
+        "classes": 0,
+        "imports": 9,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 261,
+          "msg": "Function 'main' is 58 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 14,
+      "timestamp": 1772083455.079123,
+      "_ts": 1772083455.079623,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.079623
+  },
+  "latest_pipeline_events.py": {
+    "value": {
+      "file": "core\\pipeline_events.py",
+      "filename": "pipeline_events.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 86,
+        "functions": 4,
+        "classes": 0,
+        "imports": 5,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.087151,
+      "_ts": 1772083455.0881507,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.0881507
+  },
+  "latest_playbook.py": {
+    "value": {
+      "file": "core\\playbook.py",
+      "filename": "playbook.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 277,
+        "functions": 9,
+        "classes": 0,
+        "imports": 4,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 15,
+      "timestamp": 1772083455.0962772,
+      "_ts": 1772083455.0972812,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.0977883
+  },
+  "latest_policies.py": {
+    "value": {
+      "file": "core\\policies.py",
+      "filename": "policies.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 28,
+        "functions": 1,
+        "classes": 0,
+        "imports": 0,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.1022859,
+      "_ts": 1772083455.1032896,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.1032896
+  },
+  "latest_policy_learner.py": {
+    "value": {
+      "file": "core\\policy_learner.py",
+      "filename": "policy_learner.py",
+      "score": 89,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 329,
+        "functions": 10,
+        "classes": 0,
+        "imports": 5,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 62,
+          "msg": "Function 'learn_and_adjust' is 78 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 271,
+          "msg": "Function 'cli' is 54 lines (>50), consider splitting"
+        },
+        {
+          "severity": "info",
+          "line": 184,
+          "msg": "TODO/FIXME: \"target\": f'echo \"TODO: implement action for {rule_id}\"',"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 2,
+        "info": 1
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.1120577,
+      "_ts": 1772083455.1125612,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.1125612
+  },
+  "latest_production_reactor.py": {
+    "value": {
+      "file": "core\\production_reactor.py",
+      "filename": "production_reactor.py",
+      "score": 95,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 298,
+        "functions": 12,
+        "classes": 1,
+        "imports": 5,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 81,
+          "msg": "Function 'execute' is 77 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 14,
+      "timestamp": 1772083455.1210701,
+      "_ts": 1772083455.1220734,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.1220734
+  },
+  "latest_production_scheduler.py": {
+    "value": {
+      "file": "core\\production_scheduler.py",
+      "filename": "production_scheduler.py",
+      "score": 90,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 332,
+        "functions": 16,
+        "classes": 3,
+        "imports": 9,
+        "complexity_hints": [
+          "Nested function 'run' inside '_execute_task'"
+        ]
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 155,
+          "msg": "Function '_execute_task' is 69 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 157,
+          "msg": "Function 'run' is 59 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 2,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.1320937,
+      "_ts": 1772083455.1330957,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.1330957
+  },
+  "latest_provider_manager.py": {
+    "value": {
+      "file": "core\\provider_manager.py",
+      "filename": "provider_manager.py",
+      "score": 90,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 353,
+        "functions": 14,
+        "classes": 3,
+        "imports": 6,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 65,
+          "msg": "Function 'execute_with_failover' is 75 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 253,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 2,
+        "info": 0
+      },
+      "elapsed_ms": 15,
+      "timestamp": 1772083455.14112,
+      "_ts": 1772083455.1421237,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.1431286
+  },
+  "latest_queued_router.py": {
+    "value": {
+      "file": "core\\queued_router.py",
+      "filename": "queued_router.py",
+      "score": 85,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 309,
+        "functions": 9,
+        "classes": 1,
+        "imports": 10,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 286,
+          "msg": "Function 'queued_route_model' has 7 parameters (>6), consider refactoring"
+        },
+        {
+          "severity": "warning",
+          "line": 106,
+          "msg": "Function 'route' is 83 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 106,
+          "msg": "Function 'route' has 8 parameters (>6), consider refactoring"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 3,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.1466453,
+      "_ts": 1772083455.147648,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.147648
+  },
+  "latest_reactor.py": {
+    "value": {
+      "file": "core\\reactor.py",
+      "filename": "reactor.py",
+      "score": 65,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 610,
+        "functions": 20,
+        "classes": 0,
+        "imports": 9,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 230,
+          "msg": "Function 'react' is 145 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 403,
+          "msg": "Function 'dashboard_metrics' is 91 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 500,
+          "msg": "Function 'cli' is 106 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 439,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        },
+        {
+          "severity": "warning",
+          "line": 456,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        },
+        {
+          "severity": "warning",
+          "line": 479,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 6,
+        "info": 0
+      },
+      "elapsed_ms": 16,
+      "timestamp": 1772083455.1601892,
+      "_ts": 1772083455.1611886,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.1611886
+  },
+  "latest_reactor_events.py": {
+    "value": {
+      "file": "core\\reactor_events.py",
+      "filename": "reactor_events.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 61,
+        "functions": 4,
+        "classes": 0,
+        "imports": 4,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 14,
+      "timestamp": 1772083455.167808,
+      "_ts": 1772083455.169307,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.169307
+  },
+  "latest_real_playbooks.py": {
+    "value": {
+      "file": "core\\real_playbooks.py",
+      "filename": "real_playbooks.py",
+      "score": 90,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 190,
+        "functions": 4,
+        "classes": 1,
+        "imports": 7,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 36,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        },
+        {
+          "severity": "warning",
+          "line": 55,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 2,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.1763387,
+      "_ts": 1772083455.1773386,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.1778374
+  },
+  "latest_registry.py": {
+    "value": {
+      "file": "core\\registry.py",
+      "filename": "registry.py",
+      "score": 95,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 282,
+        "functions": 20,
+        "classes": 2,
+        "imports": 7,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 105,
+          "msg": "Function '_load_plugin' is 59 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 16,
+      "timestamp": 1772083455.187354,
+      "_ts": 1772083455.1883528,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.1888535
+  },
+  "latest_resource_events.py": {
+    "value": {
+      "file": "core\\resource_events.py",
+      "filename": "resource_events.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 79,
+        "functions": 4,
+        "classes": 0,
+        "imports": 4,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.195385,
+      "_ts": 1772083455.1958838,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.1963835
+  },
+  "latest_scheduler_v2.py": {
+    "value": {
+      "file": "core\\scheduler_v2.py",
+      "filename": "scheduler_v2.py",
+      "score": 90,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 537,
+        "functions": 27,
+        "classes": 5,
+        "imports": 14,
+        "complexity_hints": [
+          "Nested function '_run' inside '_execute_task'"
+        ]
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 362,
+          "msg": "Function '_execute_task' is 67 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 14,
+      "timestamp": 1772083455.2064133,
+      "_ts": 1772083455.2074118,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.2074118
+  },
+  "latest_score_engine.py": {
+    "value": {
+      "file": "core\\score_engine.py",
+      "filename": "score_engine.py",
+      "score": 95,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 247,
+        "functions": 9,
+        "classes": 1,
+        "imports": 6,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 106,
+          "msg": "Function '_calculate_score' is 56 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 15,
+      "timestamp": 1772083455.215439,
+      "_ts": 1772083455.2159398,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.2159398
+  },
+  "latest_screen_sensor.py": {
+    "value": {
+      "file": "core\\screen_sensor.py",
+      "filename": "screen_sensor.py",
+      "score": 95,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 489,
+        "functions": 15,
+        "classes": 2,
+        "imports": 11,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 254,
+          "msg": "Function 'scan' is 82 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.2264957,
+      "_ts": 1772083455.2279947,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.2279947
+  },
+  "latest_sensors.py": {
+    "value": {
+      "file": "core\\sensors.py",
+      "filename": "sensors.py",
+      "score": 65,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 595,
+        "functions": 18,
+        "classes": 7,
+        "imports": 6,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 312,
+          "msg": "Function 'scan_all' is 62 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 312,
+          "msg": "Function 'scan_all' has 7 parameters (>6), consider refactoring"
+        },
+        {
+          "severity": "warning",
+          "line": 136,
+          "msg": "Function 'scan' is 57 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 199,
+          "msg": "Function 'scan' is 52 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 391,
+          "msg": "Function 'scan' is 57 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 514,
+          "msg": "Function 'scan' is 76 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 6,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.2385,
+      "_ts": 1772083455.2400005,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.2400005
+  },
+  "latest_skill_integration.py": {
+    "value": {
+      "file": "core\\skill_integration.py",
+      "filename": "skill_integration.py",
+      "score": 98,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 197,
+        "functions": 7,
+        "classes": 1,
+        "imports": 4,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "info",
+          "line": 44,
+          "msg": "TODO/FIXME: \"todo_check\": [\"todoist\"],"
+        },
+        {
+          "severity": "info",
+          "line": 127,
+          "msg": "TODO/FIXME: \"todo_check\": \"list\","
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 2
+      },
+      "elapsed_ms": 14,
+      "timestamp": 1772083455.2480264,
+      "_ts": 1772083455.249534,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.2500331
+  },
+  "latest_skill_manager.py": {
+    "value": {
+      "file": "core\\skill_manager.py",
+      "filename": "skill_manager.py",
+      "score": 85,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 301,
+        "functions": 13,
+        "classes": 1,
+        "imports": 4,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 102,
+          "msg": "Function 'call_skill' is 70 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 70,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        },
+        {
+          "severity": "warning",
+          "line": 246,
+          "msg": "Bare 'except:' catches all exceptions, be specific"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 3,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.258546,
+      "_ts": 1772083455.2605546,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.2605546
+  },
+  "latest_task_dispatcher.py": {
+    "value": {
+      "file": "core\\task_dispatcher.py",
+      "filename": "task_dispatcher.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 64,
+        "functions": 2,
+        "classes": 0,
+        "imports": 3,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.2665708,
+      "_ts": 1772083455.26707,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.26707
+  },
+  "latest_test_action_engine.py": {
+    "value": {
+      "file": "core\\test_action_engine.py",
+      "filename": "test_action_engine.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 304,
+        "functions": 15,
+        "classes": 0,
+        "imports": 4,
+        "complexity_hints": [
+          "Nested function 'my_tool' inside 'test_executor_registry'"
+        ]
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 16,
+      "timestamp": 1772083455.2780983,
+      "_ts": 1772083455.2790995,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.2795978
+  },
+  "latest_test_executor.py": {
+    "value": {
+      "file": "core\\test_executor.py",
+      "filename": "test_executor.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 138,
+        "functions": 11,
+        "classes": 0,
+        "imports": 3,
+        "complexity_hints": [
+          "Nested function 'ok_fn' inside 'test_dedup_hit'",
+          "Nested function 'counting_fn' inside 'test_preflight_noop'",
+          "Nested function 'env_fail' inside 'test_non_retryable'",
+          "Nested function 'net_fail' inside 'test_retryable_terminal'",
+          "Nested function 'throw_fn' inside 'test_retryable_terminal'"
+        ]
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.2882335,
+      "_ts": 1772083455.2892334,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.2892334
+  },
+  "latest_test_queued_router.py": {
+    "value": {
+      "file": "core\\test_queued_router.py",
+      "filename": "test_queued_router.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 98,
+        "functions": 2,
+        "classes": 0,
+        "imports": 5,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.2912335,
+      "_ts": 1772083455.293239,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.2937424
+  },
+  "latest_threshold_monitor.py": {
+    "value": {
+      "file": "core\\threshold_monitor.py",
+      "filename": "threshold_monitor.py",
+      "score": 0,
+      "valid_syntax": false,
+      "stats": {
+        "lines": 217,
+        "functions": 0,
+        "classes": 0,
+        "imports": 0,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "line": 1,
+          "msg": "invalid non-printable character U+FEFF"
+        }
+      ],
+      "issue_count": {
+        "error": 1,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083461.9023957,
+      "_ts": 1772083461.9046147,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083461.904921
+  },
+  "latest_toy_reactor.py": {
+    "value": {
+      "file": "core\\toy_reactor.py",
+      "filename": "toy_reactor.py",
+      "score": 95,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 207,
+        "functions": 8,
+        "classes": 1,
+        "imports": 7,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 80,
+          "msg": "Function '_execute_fix' is 74 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 16,
+      "timestamp": 1772083455.3122919,
+      "_ts": 1772083455.3143103,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.3143103
+  },
+  "latest_toy_scheduler.py": {
+    "value": {
+      "file": "core\\toy_scheduler.py",
+      "filename": "toy_scheduler.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 144,
+        "functions": 7,
+        "classes": 1,
+        "imports": 4,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.3223305,
+      "_ts": 1772083455.3233323,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.3233323
+  },
+  "latest_toy_score_engine.py": {
+    "value": {
+      "file": "core\\toy_score_engine.py",
+      "filename": "toy_score_engine.py",
+      "score": 95,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 247,
+        "functions": 9,
+        "classes": 1,
+        "imports": 6,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 106,
+          "msg": "Function '_calculate_score' is 56 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.3278542,
+      "_ts": 1772083455.3288584,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.3288584
+  },
+  "latest_tracker.py": {
+    "value": {
+      "file": "core\\tracker.py",
+      "filename": "tracker.py",
+      "score": 79,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 478,
+        "functions": 21,
+        "classes": 2,
+        "imports": 6,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 282,
+          "msg": "Function 'format_task_list' is 54 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 342,
+          "msg": "Function 'main' is 132 lines (>50), consider splitting"
+        },
+        {
+          "severity": "warning",
+          "line": 56,
+          "msg": "Function '__init__' has 7 parameters (>6), consider refactoring"
+        },
+        {
+          "severity": "info",
+          "line": 6,
+          "msg": "TODO/FIXME: 1. 任务状态机：TODO → IN_PROGRESS → BLOCKED → DONE"
+        },
+        {
+          "severity": "info",
+          "line": 31,
+          "msg": "TODO/FIXME: STATUS_TODO = \"TODO\""
+        },
+        {
+          "severity": "info",
+          "line": 36,
+          "msg": "TODO/FIXME: VALID_STATUSES = {STATUS_TODO, STATUS_IN_PROGRESS, STATUS_BLOCKED, STATUS_DONE}"
+        },
+        {
+          "severity": "info",
+          "line": 67,
+          "msg": "TODO/FIXME: self.status = STATUS_TODO"
+        },
+        {
+          "severity": "info",
+          "line": 97,
+          "msg": "TODO/FIXME: task.status = data.get(\"status\", STATUS_TODO)"
+        },
+        {
+          "severity": "info",
+          "line": 292,
+          "msg": "TODO/FIXME: STATUS_TODO: \"⏳\","
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 3,
+        "info": 6
+      },
+      "elapsed_ms": 15,
+      "timestamp": 1772083455.342389,
+      "_ts": 1772083455.3433924,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.3433924
+  },
+  "latest_verifier.py": {
+    "value": {
+      "file": "core\\verifier.py",
+      "filename": "verifier.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 233,
+        "functions": 8,
+        "classes": 0,
+        "imports": 5,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.3524213,
+      "_ts": 1772083455.3534248,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.3534248
+  },
+  "latest_watcher.py": {
+    "value": {
+      "file": "core\\watcher.py",
+      "filename": "watcher.py",
+      "score": 95,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 482,
+        "functions": 21,
+        "classes": 6,
+        "imports": 9,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 175,
+          "msg": "Function 'check' is 87 lines (>50), consider splitting"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.3634589,
+      "_ts": 1772083455.3654814,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.3654814
+  },
+  "latest___init__.py": {
+    "value": {
+      "file": "core\\queues\\__init__.py",
+      "filename": "__init__.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 33,
+        "functions": 0,
+        "classes": 0,
+        "imports": 5,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 15,
+      "timestamp": 1772083455.4713044,
+      "_ts": 1772083455.472813,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.4733179
+  },
+  "latest_base.py": {
+    "value": {
+      "file": "core\\queues\\base.py",
+      "filename": "base.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 273,
+        "functions": 13,
+        "classes": 5,
+        "imports": 12,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.375526,
+      "_ts": 1772083455.3770268,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.3770268
+  },
+  "latest_llm_queue.py": {
+    "value": {
+      "file": "core\\queues\\llm_queue.py",
+      "filename": "llm_queue.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 126,
+        "functions": 6,
+        "classes": 1,
+        "imports": 5,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 15,
+      "timestamp": 1772083455.395073,
+      "_ts": 1772083455.3970804,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.3970804
+  },
+  "latest_memory_queue.py": {
+    "value": {
+      "file": "core\\queues\\memory_queue.py",
+      "filename": "memory_queue.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 187,
+        "functions": 9,
+        "classes": 1,
+        "imports": 5,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 31,
+      "timestamp": 1772083455.426164,
+      "_ts": 1772083455.4276636,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.4281654
+  },
+  "latest_storage_queue.py": {
+    "value": {
+      "file": "core\\queues\\storage_queue.py",
+      "filename": "storage_queue.py",
+      "score": 95,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 196,
+        "functions": 8,
+        "classes": 1,
+        "imports": 5,
+        "complexity_hints": []
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "line": 43,
+          "msg": "Function '__init__' has 7 parameters (>6), consider refactoring"
+        }
+      ],
+      "issue_count": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.4311771,
+      "_ts": 1772083455.4321816,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.433185
+  },
+  "latest_test_queues.py": {
+    "value": {
+      "file": "core\\queues\\test_queues.py",
+      "filename": "test_queues.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 375,
+        "functions": 4,
+        "classes": 0,
+        "imports": 9,
+        "complexity_hints": [
+          "Nested function 'task' inside 'make_task'"
+        ]
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.4377015,
+      "_ts": 1772083455.439209,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.4397082
+  },
+  "latest_thread_pool.py": {
+    "value": {
+      "file": "core\\queues\\thread_pool.py",
+      "filename": "thread_pool.py",
+      "score": 100,
+      "valid_syntax": true,
+      "stats": {
+        "lines": 300,
+        "functions": 23,
+        "classes": 4,
+        "imports": 11,
+        "complexity_hints": []
+      },
+      "issues": [],
+      "issue_count": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "elapsed_ms": 0,
+      "timestamp": 1772083455.4442282,
+      "_ts": 1772083455.4462335,
+      "_agent": "code-reviewer"
+    },
+    "updated_at": 1772083455.4462335
+  }
+}

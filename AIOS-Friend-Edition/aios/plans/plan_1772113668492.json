@@ -1,0 +1,19 @@
+{
+  "task_id": "plan_1772113668492",
+  "original_task": "帮我规划一次周末去京都的旅行，预算5000元",
+  "subtasks": [
+    {
+      "id": "subtask_1",
+      "description": "帮我规划一次周末去京都的旅行，预算5000元",
+      "type": "design",
+      "priority": "normal",
+      "dependencies": [],
+      "estimated_time": 60,
+      "status": "pending",
+      "result": null,
+      "created_at": 1772113668.4922922
+    }
+  ],
+  "strategy": "parallel",
+  "created_at": 1772113668.4922922
+}

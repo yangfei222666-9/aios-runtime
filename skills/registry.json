@@ -1,0 +1,103 @@
+{
+  "skills": {
+    "aios_health_check": {
+      "name": "aios_health_check",
+      "version": "1.0.0",
+      "description": "Check AIOS system health (Evolution Score, event log size, Agent status)",
+      "entrypoint": "skills.aios_health_check.health_check:main",
+      "inputs_schema": {
+        "type": "object",
+        "properties": {
+          "check_type": {
+            "type": "string",
+            "enum": [
+              "full",
+              "quick",
+              "agents_only"
+            ],
+            "description": "检查类型"
+          },
+          "threshold": {
+            "type": "number",
+            "description": "告警阈值",
+            "default": 0.3
+          }
+        },
+        "required": []
+      },
+      "outputs_schema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "description": "健康状态"
+          },
+          "evolution_score": {
+            "type": "number",
+            "description": "进化分数"
+          },
+          "alerts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "告警列表"
+          },
+          "metrics": {
+            "type": "object",
+            "description": "详细指标"
+          }
+        },
+        "required": [
+          "ok"
+        ]
+      },
+      "capabilities": [
+        "file_read",
+        "network_off"
+      ],
+      "risk_level": "low",
+      "auto_approve": true,
+      "triggers": [
+        {
+          "type": "on_demand"
+        },
+        {
+          "type": "schedule",
+          "cron": "0 */6 * * *",
+          "timezone": "Asia/Shanghai"
+        }
+      ],
+      "runtime": {
+        "timeout_sec": 30,
+        "max_concurrency": 1,
+        "retry": {
+          "max_retries": 2,
+          "backoff_sec": 5
+        }
+      },
+      "routing": {
+        "tags": [
+          "monitoring",
+          "health",
+          "aios"
+        ],
+        "priority": 0.8
+      },
+      "dependencies": [
+        "psutil>=5.9.0"
+      ],
+      "env": null,
+      "icon": "🏥",
+      "author": "九",
+      "license": null,
+      "homepage": null,
+      "default_prompt": "你是 AIOS 健康检查专家，负责监控系统健康状态。\n\n检查项目：\n1. Evolution Score（进化分数）\n2. Event Log 大小\n3. Agent 状态\n4. 资源使用率\n\n当发现异常时，立即报告并提供修复建议。\n",
+      "skill_path": "C:\\Users\\A\\.openclaw\\workspace\\skills\\aios-health-check",
+      "yaml_path": "C:\\Users\\A\\.openclaw\\workspace\\skills\\aios-health-check\\skill.yaml",
+      "last_scanned": "2026-02-26T15:49:49.124677"
+    }
+  },
+  "last_updated": "2026-02-26T15:49:49.125177",
+  "total": 1
+}

@@ -37,6 +37,12 @@ INCLUDE_PATTERNS = [
     "config.yaml",
     "API.md",
     "TUTORIAL.md",
+    "AIOS_简单介绍.md",
+    "AIOS_详细介绍.md",
+    "PERPLEXITY_USAGE.md",
+    
+    # Agent 配置
+    "agents/",
     
     # 测试
     "tests/",

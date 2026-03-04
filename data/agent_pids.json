@@ -1,0 +1,20 @@
+{
+  "ui-automation-agent": {
+    "pid": 44660,
+    "start_time": "2026-02-25T22:53:57.017895",
+    "status": "stopped",
+    "script": "C:\\Users\\A\\.openclaw\\workspace\\aios\\agent_system\\agents\\default_agent.py"
+  },
+  "test-agent": {
+    "pid": 38624,
+    "start_time": "2026-02-25T23:09:35.794490",
+    "status": "stopped",
+    "script": "C:\\Users\\A\\.openclaw\\workspace\\aios\\agent_system\\agents\\default_agent.py"
+  },
+  "demo-agent": {
+    "pid": 50216,
+    "start_time": "2026-02-25T22:30:11.390230",
+    "status": "stopped",
+    "script": "C:\\Users\\A\\.openclaw\\workspace\\aios\\agent_system\\agents\\default_agent.py"
+  }
+}

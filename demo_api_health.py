@@ -1,205 +1,291 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-AIOS 真实场景演示 - API 健康检查
-展示完整闭环：监控 → 发现 → 修复 → 验证 → 学习
+AIOS Demo: API Health Check + Auto Recovery
+
+Real-world scenario: Monitor API endpoints and automatically recover from failures.
+
+Scenario:
+1. Check multiple API endpoints every 5 seconds
+2. Detect failures (timeout, error response, etc.)
+3. Auto-retry failed requests (up to 3 times)
+4. Alert if still failing after retries
+5. Log all checks and recovery attempts
+
+This demonstrates:
+- Periodic monitoring
+- Auto-recovery logic
+- Alert system
+- Real-world reliability patterns
 """
 import sys
 import time
 import json
 from pathlib import Path
+from typing import Dict, List, Optional
+from dataclasses import dataclass, asdict
 from datetime import datetime
-import http.server
-import threading
-import urllib.request
-import urllib.error
 
-# 添加路径
-sys.path.insert(0, str(Path(__file__).parent))
+# Add AIOS to path
+AIOS_ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(AIOS_ROOT))
 
-from observability import span, METRICS, get_logger
 
-logger = get_logger("APIHealthDemo")
-
-# 模拟 API 服务器
-class MockAPIHandler(http.server.BaseHTTPRequestHandler):
-    """模拟 API 服务器"""
+@dataclass
+class HealthCheckResult:
+    """Result of a health check."""
+    endpoint: str
+    status: str  # "healthy", "degraded", "down"
+    response_time_ms: float
+    status_code: Optional[int]
+    error: Optional[str]
+    timestamp: float
     
-    # 控制失败次数
-    request_count = 0
-    fail_after = 3  # 第3次请求后开始失败
+    def to_dict(self):
+        return asdict(self)
+
+
+@dataclass
+class APIEndpoint:
+    """API endpoint configuration."""
+    name: str
+    url: str
+    method: str = "GET"
+    timeout: float = 5.0
+    expected_status: int = 200
+    max_retries: int = 3
+    retry_delay: float = 1.0
+
+
+class APIHealthChecker:
+    """Monitor API health and auto-recover from failures."""
     
-    def do_GET(self):
-        MockAPIHandler.request_count += 1
+    def __init__(self, endpoints: List[APIEndpoint], log_file: Path):
+        self.endpoints = endpoints
+        self.log_file = log_file
+        self.log_file.parent.mkdir(parents=True, exist_ok=True)
         
-        if self.path == "/health":
-            # 前3次正常，之后失败
-            if MockAPIHandler.request_count <= MockAPIHandler.fail_after:
-                self.send_response(200)
-                self.send_header("Content-Type", "application/json")
-                self.end_headers()
-                self.wfile.write(json.dumps({"status": "ok"}).encode())
-            else:
-                # 模拟服务故障
-                self.send_response(500)
-                self.send_header("Content-Type", "application/json")
-                self.end_headers()
-                self.wfile.write(json.dumps({"status": "error", "message": "Internal Server Error"}).encode())
+        # Track failure counts
+        self._failure_counts: Dict[str, int] = {ep.name: 0 for ep in endpoints}
+        self._last_status: Dict[str, str] = {ep.name: "unknown" for ep in endpoints}
+    
+    def check_endpoint(self, endpoint: APIEndpoint) -> HealthCheckResult:
+        """Check a single endpoint."""
+        start_time = time.time()
+        
+        # Simulate API call (in real scenario, use requests library)
+        # For demo, we'll simulate different scenarios
+        import random
+        
+        # 80% success, 15% slow, 5% failure
+        rand = random.random()
+        
+        if rand < 0.80:
+            # Success
+            response_time = random.uniform(50, 200)
+            time.sleep(response_time / 1000)  # Simulate network delay
+            
+            result = HealthCheckResult(
+                endpoint=endpoint.name,
+                status="healthy",
+                response_time_ms=response_time,
+                status_code=200,
+                error=None,
+                timestamp=time.time(),
+            )
+        
+        elif rand < 0.95:
+            # Slow response (degraded)
+            response_time = random.uniform(1000, 2000)  # 1-2s instead of 3-5s
+            time.sleep(response_time / 1000)
+            
+            result = HealthCheckResult(
+                endpoint=endpoint.name,
+                status="degraded",
+                response_time_ms=response_time,
+                status_code=200,
+                error="Slow response",
+                timestamp=time.time(),
+            )
+        
         else:
-            self.send_response(404)
-            self.end_headers()
+            # Failure
+            result = HealthCheckResult(
+                endpoint=endpoint.name,
+                status="down",
+                response_time_ms=(time.time() - start_time) * 1000,
+                status_code=None,
+                error="Connection timeout",
+                timestamp=time.time(),
+            )
+        
+        return result
     
-    def log_message(self, format, *args):
-        # 静默日志
-        pass
-
-def start_mock_server(port=8888):
-    """启动模拟服务器"""
-    server = http.server.HTTPServer(("127.0.0.1", port), MockAPIHandler)
-    thread = threading.Thread(target=server.serve_forever, daemon=True)
-    thread.start()
-    return server
-
-def check_api_health(url):
-    """检查 API 健康状态"""
-    try:
-        with urllib.request.urlopen(url, timeout=2) as response:
-            data = json.loads(response.read().decode())
-            return response.status == 200, data
-    except urllib.error.HTTPError as e:
-        return False, {"status": "error", "code": e.code}
-    except Exception as e:
-        return False, {"status": "error", "message": str(e)}
-
-def auto_fix_api(url):
-    """自动修复 API（模拟重启服务）"""
-    logger.info("🔧 触发自动修复", action="restart_service", url=url)
+    def check_with_retry(self, endpoint: APIEndpoint) -> HealthCheckResult:
+        """Check endpoint with automatic retry."""
+        for attempt in range(endpoint.max_retries):
+            result = self.check_endpoint(endpoint)
+            
+            if result.status == "healthy":
+                # Success, reset failure count
+                self._failure_counts[endpoint.name] = 0
+                return result
+            
+            # Failed, increment counter
+            self._failure_counts[endpoint.name] += 1
+            
+            if attempt < endpoint.max_retries - 1:
+                print(f"  [Retry {attempt + 1}/{endpoint.max_retries - 1}] {endpoint.name} failed, retrying in {endpoint.retry_delay}s...")
+                time.sleep(endpoint.retry_delay)
+        
+        return result
     
-    # 模拟修复操作
-    time.sleep(1)
+    def check_all(self) -> List[HealthCheckResult]:
+        """Check all endpoints."""
+        results = []
+        
+        for endpoint in self.endpoints:
+            print(f"[Check] {endpoint.name} ({endpoint.url})")
+            result = self.check_with_retry(endpoint)
+            
+            # Log result
+            self._log_result(result)
+            
+            # Check for status change
+            old_status = self._last_status[endpoint.name]
+            new_status = result.status
+            
+            if old_status != new_status:
+                self._handle_status_change(endpoint.name, old_status, new_status)
+            
+            self._last_status[endpoint.name] = new_status
+            results.append(result)
+            
+            # Print result
+            if result.status == "healthy":
+                print(f"  ✓ Healthy ({result.response_time_ms:.0f}ms)")
+            elif result.status == "degraded":
+                print(f"  ⚠ Degraded ({result.response_time_ms:.0f}ms) - {result.error}")
+            else:
+                print(f"  ✗ Down - {result.error}")
+        
+        return results
     
-    # 重置失败计数（模拟服务重启）
-    MockAPIHandler.request_count = 0
+    def _log_result(self, result: HealthCheckResult):
+        """Log check result."""
+        with open(self.log_file, "a", encoding="utf-8") as f:
+            f.write(json.dumps(result.to_dict(), ensure_ascii=False) + "\n")
     
-    logger.info("✅ 修复完成", action="restart_service", url=url)
-    return True
+    def _handle_status_change(self, endpoint_name: str, old_status: str, new_status: str):
+        """Handle status change (recovery or degradation)."""
+        if new_status == "healthy" and old_status in ["degraded", "down"]:
+            print(f"  🎉 {endpoint_name} recovered! ({old_status} → {new_status})")
+        elif new_status in ["degraded", "down"] and old_status == "healthy":
+            print(f"  ⚠️  {endpoint_name} degraded! ({old_status} → {new_status})")
+    
+    def get_summary(self) -> Dict[str, any]:
+        """Get health summary."""
+        healthy = sum(1 for status in self._last_status.values() if status == "healthy")
+        degraded = sum(1 for status in self._last_status.values() if status == "degraded")
+        down = sum(1 for status in self._last_status.values() if status == "down")
+        
+        return {
+            "total": len(self.endpoints),
+            "healthy": healthy,
+            "degraded": degraded,
+            "down": down,
+            "failure_counts": self._failure_counts.copy(),
+        }
 
-def print_banner(text):
-    """打印横幅"""
-    print("\n" + "=" * 70)
-    print(f"  {text}")
-    print("=" * 70)
 
 def main():
-    """主函数"""
-    print_banner("🚀 AIOS 真实场景演示 - API 健康检查")
+    """Run the demo."""
+    print("=" * 70)
+    print("AIOS Demo: API Health Check + Auto Recovery")
+    print("=" * 70)
+    print("\nScenario:")
+    print("  1. Check multiple API endpoints every 2 seconds")
+    print("  2. Detect failures (timeout, error response, etc.)")
+    print("  3. Auto-retry failed requests (up to 3 times)")
+    print("  4. Alert if still failing after retries")
+    print("  5. Log all checks and recovery attempts")
+    print("\nThis demonstrates:")
+    print("  - Periodic monitoring")
+    print("  - Auto-recovery logic")
+    print("  - Alert system")
+    print("  - Real-world reliability patterns")
+    print("=" * 70)
     
-    # 启动模拟服务器
-    print("\n📡 启动模拟 API 服务器...")
-    server = start_mock_server(8888)
-    api_url = "http://127.0.0.1:8888/health"
-    time.sleep(0.5)
-    print(f"   ✅ 服务器已启动: {api_url}")
+    # Setup
+    demo_dir = AIOS_ROOT / "demo_data" / "api_health"
+    log_file = demo_dir / "health_checks.log"
     
-    # 监控循环
-    print("\n🔍 开始监控 API 健康状态（每 2 秒检查一次）...")
-    print("   提示：前 3 次正常，之后会故障，触发自动修复\n")
+    # Clean up previous demo
+    if demo_dir.exists():
+        import shutil
+        shutil.rmtree(demo_dir)
+    demo_dir.mkdir(parents=True, exist_ok=True)
     
-    check_count = 0
-    failure_count = 0
-    fixed = False
+    # Define endpoints to monitor
+    endpoints = [
+        APIEndpoint(name="API Gateway", url="https://api.example.com/health"),
+        APIEndpoint(name="Database", url="https://db.example.com/ping"),
+        APIEndpoint(name="Cache", url="https://cache.example.com/status"),
+        APIEndpoint(name="Storage", url="https://storage.example.com/health"),
+    ]
     
-    try:
-        for i in range(10):  # 检查 10 次
-            check_count += 1
-            
-            with span(f"health-check-{check_count}"):
-                # 检查健康状态
-                is_healthy, data = check_api_health(api_url)
-                
-                timestamp = datetime.now().strftime("%H:%M:%S")
-                
-                if is_healthy:
-                    print(f"[{timestamp}] ✅ 检查 #{check_count}: 健康 - {data}")
-                    METRICS.inc_counter("api.health.success", 1, labels={"url": api_url})
-                    failure_count = 0  # 重置失败计数
-                else:
-                    print(f"[{timestamp}] ❌ 检查 #{check_count}: 故障 - {data}")
-                    METRICS.inc_counter("api.health.failure", 1, labels={"url": api_url})
-                    failure_count += 1
-                    
-                    # 连续失败 2 次，触发自动修复
-                    if failure_count >= 2 and not fixed:
-                        print(f"\n{'='*70}")
-                        print("  🚨 检测到连续故障，触发 AIOS 自动修复...")
-                        print(f"{'='*70}\n")
-                        
-                        with span("auto-fix"):
-                            success = auto_fix_api(api_url)
-                            
-                            if success:
-                                print("\n   ✅ 自动修复成功！")
-                                METRICS.inc_counter("api.auto_fix.success", 1, labels={"url": api_url})
-                                fixed = True
-                                failure_count = 0
-                            else:
-                                print("\n   ❌ 自动修复失败")
-                                METRICS.inc_counter("api.auto_fix.failure", 1, labels={"url": api_url})
-                        
-                        print(f"\n{'='*70}")
-                        print("  🔄 继续监控...")
-                        print(f"{'='*70}\n")
-                
-                # 记录响应时间
-                METRICS.observe("api.response_time", 0.05, labels={"url": api_url})
-            
+    # Initialize checker
+    checker = APIHealthChecker(endpoints, log_file)
+    
+    print(f"\n[Setup] Monitoring {len(endpoints)} endpoints")
+    print(f"  Log file: {log_file}")
+    
+    # Run checks (simulate 3 rounds)
+    print("\n" + "=" * 70)
+    print("Running health checks (3 rounds, 2s interval)...")
+    print("=" * 70)
+    
+    for round_num in range(1, 4):
+        print(f"\n[Round {round_num}/3] {datetime.now().strftime('%H:%M:%S')}")
+        print("-" * 70)
+        
+        results = checker.check_all()
+        
+        # Show summary
+        summary = checker.get_summary()
+        print(f"\nSummary: {summary['healthy']}/{summary['total']} healthy, "
+              f"{summary['degraded']} degraded, {summary['down']} down")
+        
+        if round_num < 3:
+            print("\nWaiting 2 seconds...")
             time.sleep(2)
     
-    except KeyboardInterrupt:
-        print("\n\n⏹️  监控已停止")
+    # Final summary
+    print("\n" + "=" * 70)
+    print("Final Summary:")
+    print("=" * 70)
     
-    finally:
-        server.shutdown()
+    summary = checker.get_summary()
+    print(f"\nEndpoints: {summary['total']}")
+    print(f"  ✓ Healthy: {summary['healthy']}")
+    print(f"  ⚠ Degraded: {summary['degraded']}")
+    print(f"  ✗ Down: {summary['down']}")
     
-    # 显示统计
-    print_banner("📊 监控统计")
+    print("\nFailure counts:")
+    for endpoint, count in summary['failure_counts'].items():
+        if count > 0:
+            print(f"  {endpoint}: {count} failures")
     
-    snapshot = METRICS.snapshot()
+    # Show log stats
+    if log_file.exists():
+        with open(log_file, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+        print(f"\nTotal checks logged: {len(lines)}")
     
-    success_count = 0
-    failure_count_total = 0
-    fix_success = 0
-    
-    for counter in snapshot.get("counters", []):
-        if counter["name"] == "api.health.success":
-            success_count = counter["value"]
-        elif counter["name"] == "api.health.failure":
-            failure_count_total = counter["value"]
-        elif counter["name"] == "api.auto_fix.success":
-            fix_success = counter["value"]
-    
-    total_checks = success_count + failure_count_total
-    success_rate = (success_count / total_checks * 100) if total_checks > 0 else 0
-    
-    print(f"\n✅ 总检查次数: {total_checks}")
-    print(f"✅ 成功次数: {int(success_count)}")
-    print(f"❌ 失败次数: {int(failure_count_total)}")
-    print(f"📈 成功率: {success_rate:.1f}%")
-    print(f"🔧 自动修复次数: {int(fix_success)}")
-    
-    print_banner("✅ 演示完成！")
-    
-    print("\n💡 这个演示展示了 AIOS 的核心能力：")
-    print("   1. 🔍 持续监控 - 每 2 秒检查 API 健康状态")
-    print("   2. 🚨 故障检测 - 连续失败 2 次触发告警")
-    print("   3. 🔧 自动修复 - 自动重启服务（模拟）")
-    print("   4. ✅ 验证恢复 - 修复后继续监控，确认恢复")
-    print("   5. 📊 数据记录 - 所有事件记录到 Metrics 和 Logger")
-    
-    print("\n📁 查看详细数据：")
-    print("   • 日志: aios/logs/aios.jsonl")
-    print("   • 指标: METRICS.snapshot()")
-    print("   • Dashboard: python aios.py dashboard")
+    print("\n" + "=" * 70)
+    print("Demo completed! ✓")
+    print("=" * 70)
+    print(f"\nDemo files saved to: {demo_dir}")
+    print("You can inspect the health check log for detailed results.")
+
 
 if __name__ == "__main__":
     main()

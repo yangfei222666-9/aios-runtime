@@ -1,0 +1,13 @@
+{
+  "name": "Create Missing File",
+  "error_pattern": "FileNotFoundError",
+  "steps": [
+    "Check if file path is correct",
+    "Create missing directory if needed",
+    "Create empty file with default content",
+    "Verify file permissions"
+  ],
+  "risk_level": "low",
+  "auto_apply": true,
+  "created_at": "2026-02-27T18:53:30.038702"
+}

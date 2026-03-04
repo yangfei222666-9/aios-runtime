@@ -1,0 +1,45 @@
+{
+  "task_id": "plan_1772125533514",
+  "original_task": "实现一个新的调度算法",
+  "subtasks": [
+    {
+      "id": "subtask_1",
+      "description": "设计 一个新的调度算法 的架构",
+      "type": "design",
+      "priority": "high",
+      "dependencies": [],
+      "estimated_time": 300,
+      "status": "pending",
+      "result": null,
+      "created_at": 1772125533.5142105
+    },
+    {
+      "id": "subtask_2",
+      "description": "实现 一个新的调度算法 的核心功能",
+      "type": "code",
+      "priority": "high",
+      "dependencies": [
+        "subtask_1"
+      ],
+      "estimated_time": 600,
+      "status": "pending",
+      "result": null,
+      "created_at": 1772125533.5142105
+    },
+    {
+      "id": "subtask_3",
+      "description": "测试 一个新的调度算法",
+      "type": "code",
+      "priority": "normal",
+      "dependencies": [
+        "subtask_2"
+      ],
+      "estimated_time": 180,
+      "status": "pending",
+      "result": null,
+      "created_at": 1772125533.5142105
+    }
+  ],
+  "strategy": "sequential",
+  "created_at": 1772125533.5142105
+}

@@ -1,0 +1,46 @@
+{
+  "created_at": 1772021064.5104158,
+  "snapshot_at": 1772021083.0282307,
+  "counters": [
+    {
+      "name": "file.checks.no_change",
+      "labels": {},
+      "value": 9.0
+    },
+    {
+      "name": "file.changes.detected",
+      "labels": {
+        "file": "important_config.json"
+      },
+      "value": 1.0
+    },
+    {
+      "name": "file.backups.success",
+      "labels": {
+        "file": "important_config.json"
+      },
+      "value": 1.0
+    },
+    {
+      "name": "file.backups.verified",
+      "labels": {},
+      "value": 1.0
+    }
+  ],
+  "gauges": [],
+  "histograms": [
+    {
+      "name": "file.check_duration",
+      "labels": {
+        "file": "important_config.json"
+      },
+      "value": {
+        "count": 10,
+        "sum": 0.09999999999999999,
+        "min": 0.01,
+        "max": 0.01,
+        "avg": 0.009999999999999998
+      }
+    }
+  ]
+}

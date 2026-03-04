@@ -1,0 +1,805 @@
+{
+  "agent-deployer": {
+    "name": "agent-deployer",
+    "type": "skill",
+    "description": "Deploy Skills as AIOS Agents. Automatically generates Agent configurations from SKILL.md and integrates them into the AIOS Agent System. Use when you want to turn a Skill into an executable Agent that can be scheduled and managed by AIOS.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\agent-deployer\\agent_deployer.py",
+    "metadata": {
+      "name": "agent-deployer",
+      "description": "Deploy Skills as AIOS Agents. Automatically generates Agent configurations from SKILL.md and integrates them into the AIOS Agent System. Use when you want to turn a Skill into an executable Agent that can be scheduled and managed by AIOS."
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.795883",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "agent-team-orchestration": {
+    "name": "agent-team-orchestration",
+    "type": "skill",
+    "description": "\"Orchestrate multi-agent teams with defined roles, task lifecycles, handoff protocols, and review workflows. Use when: (1) Setting up a team of 2+ agents with different specializations, (2) Defining task routing and lifecycle (inbox → spec → build → review → done), (3) Creating handoff protocols between agents, (4) Establishing review and quality gates, (5) Managing async communication and artifact sharing between agents.\"",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\agent-team-orchestration",
+    "metadata": {
+      "name": "agent-team-orchestration",
+      "description": "\"Orchestrate multi-agent teams with defined roles, task lifecycles, handoff protocols, and review workflows. Use when: (1) Setting up a team of 2+ agents with different specializations, (2) Defining task routing and lifecycle (inbox → spec → build → review → done), (3) Creating handoff protocols between agents, (4) Establishing review and quality gates, (5) Managing async communication and artifact sharing between agents.\""
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.800387",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "ai-news-collector": {
+    "name": "ai-news-collector",
+    "type": "skill",
+    "description": "AI 新闻聚合与热度排序工具。当用户询问 AI 领域最新动态时触发，如：\"今天有什么 AI 新闻？\"\"总结一下这周的 AI 动态\"\"最近有什么火的 AI 产品？\"\"AI 圈最近在讨论什么？\"。覆盖：新产品发布、研究论文、行业动态、融资新闻、开源项目更新、社区病毒传播现象、AI 工具/Agent 热门项目。输出中文摘要列表，按热度排序，附带原文链接。",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\ai-news-collectors",
+    "metadata": {
+      "name": "ai-news-collector",
+      "description": "AI 新闻聚合与热度排序工具。当用户询问 AI 领域最新动态时触发，如：\"今天有什么 AI 新闻？\"\"总结一下这周的 AI 动态\"\"最近有什么火的 AI 产品？\"\"AI 圈最近在讨论什么？\"。覆盖：新产品发布、研究论文、行业动态、融资新闻、开源项目更新、社区病毒传播现象、AI 工具/Agent 热门项目。输出中文摘要列表，按热度排序，附带原文链接。"
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.804755",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "aios-backup": {
+    "name": "aios-backup",
+    "type": "skill",
+    "description": "Backup critical AIOS data (events, metrics, agents, lessons). Use during maintenance or before major changes.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\aios-backup\\backup.py",
+    "metadata": {
+      "name": "aios-backup",
+      "description": "Backup critical AIOS data (events, metrics, agents, lessons). Use during maintenance or before major changes."
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.807910",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "aios-cleanup": {
+    "name": "aios-cleanup",
+    "type": "skill",
+    "description": "Clean up old AIOS data (events, logs, temp files). Use when disk space is low or during maintenance.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\aios-cleanup\\cleanup.py",
+    "metadata": {
+      "name": "aios-cleanup",
+      "description": "Clean up old AIOS data (events, logs, temp files). Use when disk space is low or during maintenance."
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.811420",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "aios-health-check": {
+    "name": "aios-health-check",
+    "type": "skill",
+    "description": "Check AIOS system health (Evolution Score, event log size, Agent status). Use when monitoring AIOS or troubleshooting issues.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\aios-health-check\\check.py",
+    "metadata": {
+      "name": "aios-health-check",
+      "description": "Check AIOS system health (Evolution Score, event log size, Agent status). Use when monitoring AIOS or troubleshooting issues."
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.814433",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "api-testing-skill": {
+    "name": "api-testing-skill",
+    "type": "skill",
+    "description": "API 测试 - 发送请求、验证响应、性能测试",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\api-testing-skill",
+    "metadata": {
+      "name": "api-testing-skill",
+      "description": "API 测试 - 发送请求、验证响应、性能测试",
+      "version": "1.0.0",
+      "author": "小九",
+      "tags": "[api, testing, http]",
+      "category": "testing"
+    },
+    "tags": "[api, testing, http]",
+    "registered_at": "2026-02-27T02:46:08.817436",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": "小九",
+    "dependencies": []
+  },
+  "automation-workflows": {
+    "name": "automation-workflows",
+    "type": "skill",
+    "description": "Design and implement automation workflows to save time and scale operations as a solopreneur. Use when identifying repetitive tasks to automate, building workflows across tools, setting up triggers and actions, or optimizing existing automations. Covers automation opportunity identification, workflow design, tool selection (Zapier, Make, n8n), testing, and maintenance. Trigger on \"automate\", \"automation\", \"workflow automation\", \"save time\", \"reduce manual work\", \"automate my business\", \"no-code automation\".",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\automation-workflows",
+    "metadata": {
+      "name": "automation-workflows",
+      "description": "Design and implement automation workflows to save time and scale operations as a solopreneur. Use when identifying repetitive tasks to automate, building workflows across tools, setting up triggers and actions, or optimizing existing automations. Covers automation opportunity identification, workflow design, tool selection (Zapier, Make, n8n), testing, and maintenance. Trigger on \"automate\", \"automation\", \"workflow automation\", \"save time\", \"reduce manual work\", \"automate my business\", \"no-code automation\"."
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.821944",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "baidu-search": {
+    "name": "baidu-search",
+    "type": "skill",
+    "description": "Search the web using Baidu AI Search Engine (BDSE). Use for live information, documentation, or research topics.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\baidu-search",
+    "metadata": {
+      "name": "baidu-search",
+      "description": "Search the web using Baidu AI Search Engine (BDSE). Use for live information, documentation, or research topics.",
+      "metadata": "{ \"openclaw\": { \"emoji\": \"🔍︎\",  \"requires\": { \"bins\": [\"python3\"], \"env\":[\"BAIDU_API_KEY\"]},\"primaryEnv\":\"BAIDU_API_KEY\" } }"
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.825969",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "cloudrouter-skill": {
+    "name": "cloudrouter-skill",
+    "type": "skill",
+    "description": "CloudRouter 集成 - 启动云端 VM、同步文件、管理 VM 生命周期",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\cloudrouter-skill",
+    "metadata": {
+      "name": "cloudrouter-skill",
+      "description": "CloudRouter 集成 - 启动云端 VM、同步文件、管理 VM 生命周期",
+      "version": "1.0.0",
+      "author": "小九",
+      "tags": "[cloudrouter, vm, cloud]",
+      "category": "infrastructure"
+    },
+    "tags": "[cloudrouter, vm, cloud]",
+    "registered_at": "2026-02-27T02:46:08.828971",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": "小九",
+    "dependencies": []
+  },
+  "daily-briefing": {
+    "name": "daily-briefing",
+    "type": "skill",
+    "description": "Generates a warm, compact daily briefing with weather, calendar, reminders, birthdays, and important emails for cron or chat delivery.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\daily-briefing",
+    "metadata": {
+      "name": "daily-briefing",
+      "description": "Generates a warm, compact daily briefing with weather, calendar, reminders, birthdays, and important emails for cron or chat delivery.",
+      "metadata": "{\"openclaw\":{\"emoji\":\"🌅\",\"requires\":{\"os\":[\"darwin\"],\"bins\":[\"curl\",\"bash\"]},\"optional_bins\":[\"icalpal\",\"gog\",\"himalaya\"]}}",
+      "user-invocable": "true"
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.835497",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "data-collector-skill": {
+    "name": "data-collector-skill",
+    "type": "skill",
+    "description": "DataCollector CLI - 快速记录和查询 AIOS 数据（事件、任务、Agent、指标）",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\data-collector-skill\\data_collector_cli.py",
+    "metadata": {
+      "name": "data-collector-skill",
+      "description": "DataCollector CLI - 快速记录和查询 AIOS 数据（事件、任务、Agent、指标）",
+      "version": "1.0.0",
+      "author": "小九",
+      "tags": "[aios, data-collector, cli, monitoring]",
+      "category": "aios"
+    },
+    "tags": "[aios, data-collector, cli, monitoring]",
+    "registered_at": "2026-02-27T02:46:08.839005",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": "小九",
+    "dependencies": []
+  },
+  "database-skill": {
+    "name": "database-skill",
+    "type": "skill",
+    "description": "数据库操作 - SQLite/PostgreSQL 查询、备份、恢复",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\database-skill",
+    "metadata": {
+      "name": "database-skill",
+      "description": "数据库操作 - SQLite/PostgreSQL 查询、备份、恢复",
+      "version": "1.0.0",
+      "author": "小九",
+      "tags": "[database, sql, sqlite, postgresql]",
+      "category": "data"
+    },
+    "tags": "[database, sql, sqlite, postgresql]",
+    "registered_at": "2026-02-27T02:46:08.842504",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": "小九",
+    "dependencies": []
+  },
+  "docker-skill": {
+    "name": "docker-skill",
+    "type": "skill",
+    "description": "Docker 操作 - 构建、运行、管理容器",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\docker-skill",
+    "metadata": {
+      "name": "docker-skill",
+      "description": "Docker 操作 - 构建、运行、管理容器",
+      "version": "1.0.0",
+      "author": "小九",
+      "tags": "[docker, container, devops]",
+      "category": "infrastructure"
+    },
+    "tags": "[docker, container, devops]",
+    "registered_at": "2026-02-27T02:46:08.845016",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": "小九",
+    "dependencies": []
+  },
+  "document-agent": {
+    "name": "document-agent",
+    "type": "skill",
+    "description": "Process documents (docx/pdf/txt) to extract text, generate summaries, extract outlines, and identify keywords. Use when users need to analyze documents, create summaries, or extract structured information from files.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\document-agent\\document_agent.py",
+    "metadata": {
+      "name": "document-agent",
+      "description": "Process documents (docx/pdf/txt) to extract text, generate summaries, extract outlines, and identify keywords. Use when users need to analyze documents, create summaries, or extract structured information from files."
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.849022",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "evaluator-skill": {
+    "name": "evaluator-skill",
+    "type": "skill",
+    "description": "Evaluator CLI - 快速评估 AIOS 系统健康度、Agent 性能、任务质量",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\evaluator-skill\\evaluator_cli.py",
+    "metadata": {
+      "name": "evaluator-skill",
+      "description": "Evaluator CLI - 快速评估 AIOS 系统健康度、Agent 性能、任务质量",
+      "version": "1.0.0",
+      "author": "小九",
+      "tags": "[aios, evaluator, cli, monitoring, health-check]",
+      "category": "aios"
+    },
+    "tags": "[aios, evaluator, cli, monitoring, health-check]",
+    "registered_at": "2026-02-27T02:46:08.852021",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": "小九",
+    "dependencies": []
+  },
+  "file-organizer-skill": {
+    "name": "file-organizer-skill",
+    "type": "skill",
+    "description": "Organize files in directories by grouping them into folders based on their extensions or date. Includes Dry-Run, Recursive, and Undo capabilities.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\file-organizer-skill",
+    "metadata": {
+      "name": "file-organizer-skill",
+      "description": "Organize files in directories by grouping them into folders based on their extensions or date. Includes Dry-Run, Recursive, and Undo capabilities."
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.856106",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "find-skills": {
+    "name": "find-skills",
+    "type": "skill",
+    "description": "Intelligent skill discovery and recommendation system. Helps users find the right skill for their needs through smart matching, category browsing, and usage-based recommendations. Use when users ask \"how do I do X\", \"find a skill for X\", or want to explore available capabilities.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\find-skills\\find_skill.py",
+    "metadata": {
+      "name": "find-skills",
+      "description": "Intelligent skill discovery and recommendation system. Helps users find the right skill for their needs through smart matching, category browsing, and usage-based recommendations. Use when users ask \"how do I do X\", \"find a skill for X\", or want to explore available capabilities."
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.859612",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "git-skill": {
+    "name": "git-skill",
+    "type": "skill",
+    "description": "Git CLI - Git 操作封装（提交、推送、分支管理、查看日志）",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\git-skill\\git_cli.py",
+    "metadata": {
+      "name": "git-skill",
+      "description": "Git CLI - Git 操作封装（提交、推送、分支管理、查看日志）",
+      "version": "1.0.0",
+      "author": "小九",
+      "tags": "[git, cli, version-control]",
+      "category": "development"
+    },
+    "tags": "[git, cli, version-control]",
+    "registered_at": "2026-02-27T02:46:08.862117",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": "小九",
+    "dependencies": []
+  },
+  "hz-error-guard": {
+    "name": "hz-error-guard",
+    "type": "skill",
+    "description": "",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\hz-error-guard",
+    "metadata": {},
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.865640",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "log-analysis-skill": {
+    "name": "log-analysis-skill",
+    "type": "skill",
+    "description": "日志分析工具 - 解析、统计、告警",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\log-analysis-skill",
+    "metadata": {
+      "name": "log-analysis-skill",
+      "description": "日志分析工具 - 解析、统计、告警",
+      "version": "1.0.0",
+      "author": "小九",
+      "tags": "[log, analysis, monitoring]",
+      "category": "monitoring"
+    },
+    "tags": "[log, analysis, monitoring]",
+    "registered_at": "2026-02-27T02:46:08.868640",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": "小九",
+    "dependencies": []
+  },
+  "Monitoring": {
+    "name": "Monitoring",
+    "type": "skill",
+    "description": "\"Set up observability for applications and infrastructure with metrics, logs, traces, and alerts.\"",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\monitoring",
+    "metadata": {
+      "name": "Monitoring",
+      "description": "\"Set up observability for applications and infrastructure with metrics, logs, traces, and alerts.\""
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.872652",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "news-summary": {
+    "name": "news-summary",
+    "type": "skill",
+    "description": "This skill should be used when the user asks for news updates, daily briefings, or what's happening in the world. Fetches news from trusted international RSS feeds and can create voice summaries.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\news-summary",
+    "metadata": {
+      "name": "news-summary",
+      "description": "This skill should be used when the user asks for news updates, daily briefings, or what's happening in the world. Fetches news from trusted international RSS feeds and can create voice summaries."
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.877664",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "pdf-skill": {
+    "name": "pdf-skill",
+    "type": "skill",
+    "description": "PDF 提取、生成、合并、拆分工具。打工人刚需，支持文本提取、PDF 信息查询、多文件合并、按页拆分、指定页面提取。",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\pdf-skill\\create_test_pdf.py",
+    "metadata": {
+      "name": "pdf-skill",
+      "description": "PDF 提取、生成、合并、拆分工具。打工人刚需，支持文本提取、PDF 信息查询、多文件合并、按页拆分、指定页面提取。",
+      "version": "1.0.0",
+      "author": "小九 + 珊瑚海",
+      "category": "office",
+      "keywords": "",
+      "triggers": ""
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.880172",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": "小九 + 珊瑚海",
+    "dependencies": []
+  },
+  "pdf-skill-test": {
+    "name": "pdf-skill-test",
+    "type": "skill",
+    "description": "PDF processing skill",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\pdf-skill-test\\pdf_tool.py",
+    "metadata": {
+      "name": "pdf-skill-test",
+      "description": "PDF processing skill"
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.884708",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "agent-tools": {
+    "name": "agent-tools",
+    "type": "skill",
+    "description": "Digital Swiss Army knife for everyday labor that standard models can't handle out of the box. Use when: (1) Need to manipulate files (rename, move, copy, delete), (2) Working with JSON/YAML/TOML configs, (3) Running system commands safely, (4) Processing text with regex or transformations, (5) Need utility functions for common operations.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\pls-agent-tools",
+    "metadata": {
+      "name": "agent-tools",
+      "description": "Digital Swiss Army knife for everyday labor that standard models can't handle out of the box. Use when: (1) Need to manipulate files (rename, move, copy, delete), (2) Working with JSON/YAML/TOML configs, (3) Running system commands safely, (4) Processing text with regex or transformations, (5) Need utility functions for common operations."
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.888717",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "quality-gates-skill": {
+    "name": "quality-gates-skill",
+    "type": "skill",
+    "description": "Quality Gates CLI - 快速检查改进是否可以应用，三层门禁（L0/L1/L2）",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\quality-gates-skill\\quality_gates_cli.py",
+    "metadata": {
+      "name": "quality-gates-skill",
+      "description": "Quality Gates CLI - 快速检查改进是否可以应用，三层门禁（L0/L1/L2）",
+      "version": "1.0.0",
+      "author": "小九",
+      "tags": "[aios, quality-gates, cli, safety, validation]",
+      "category": "aios"
+    },
+    "tags": "[aios, quality-gates, cli, safety, validation]",
+    "registered_at": "2026-02-27T02:46:08.892223",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": "小九",
+    "dependencies": []
+  },
+  "ripgrep": {
+    "name": "ripgrep",
+    "type": "skill",
+    "description": "Blazingly fast text search tool - recursively searches directories for regex patterns with respect to gitignore rules.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\ripgrep",
+    "metadata": {
+      "name": "ripgrep",
+      "description": "Blazingly fast text search tool - recursively searches directories for regex patterns with respect to gitignore rules.",
+      "homepage": "https://github.com/BurntSushi/ripgrep",
+      "metadata": "{\"clawdbot\":{\"emoji\":\"🔎\",\"requires\":{\"bins\":[\"rg\"]},\"install\":[{\"id\":\"brew\",\"kind\":\"brew\",\"formula\":\"ripgrep\",\"bins\":[\"rg\"],\"label\":\"Install ripgrep (brew)\"},{\"id\":\"apt\",\"kind\":\"apt\",\"package\":\"ripgrep\",\"bins\":[\"rg\"],\"label\":\"Install ripgrep (apt)\"}]}}"
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.897243",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "Screenshot": {
+    "name": "Screenshot",
+    "type": "skill",
+    "description": "Capture screens, windows, and regions across platforms with the right tools.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\screenshot",
+    "metadata": {
+      "name": "Screenshot",
+      "description": "Capture screens, windows, and regions across platforms with the right tools.",
+      "metadata": "{\"clawdbot\":{\"emoji\":\"📸\",\"os\":[\"linux\",\"darwin\",\"win32\"]}}"
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.905780",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "self-improving-skill": {
+    "name": "self-improving-skill",
+    "type": "skill",
+    "description": "Self-Improving Loop CLI - 管理 AIOS 自我改进（触发、历史、回滚）",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\self-improving-skill\\self_improving_cli.py",
+    "metadata": {
+      "name": "self-improving-skill",
+      "description": "Self-Improving Loop CLI - 管理 AIOS 自我改进（触发、历史、回滚）",
+      "version": "1.0.0",
+      "author": "小九",
+      "tags": "[aios, self-improving, cli, evolution]",
+      "category": "aios"
+    },
+    "tags": "[aios, self-improving, cli, evolution]",
+    "registered_at": "2026-02-27T02:46:08.910298",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": "小九",
+    "dependencies": []
+  },
+  "server-health": {
+    "name": "server-health",
+    "type": "skill",
+    "description": "Comprehensive server health monitoring showing system stats, top processes, OpenClaw gateway status, and running services. Perfect for quick health checks via Telegram or CLI.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\server-health",
+    "metadata": {
+      "name": "server-health",
+      "description": "Comprehensive server health monitoring showing system stats, top processes, OpenClaw gateway status, and running services. Perfect for quick health checks via Telegram or CLI."
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.920989",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "simple-monitor": {
+    "name": "simple-monitor",
+    "type": "skill",
+    "description": "Simple server monitoring tool",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\simple-monitor\\test_monitor.py",
+    "metadata": {
+      "name": "simple-monitor",
+      "description": "Simple server monitoring tool"
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.924494",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "skill-creator": {
+    "name": "skill-creator",
+    "type": "skill",
+    "description": "Create or update agent skills. Use when designing, building, or packaging skills that include scripts, references, and resources. Analyzes code, extracts patterns, generates SKILL.md documentation, and packages skills for sharing.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\skill-creator\\skill_creator.py",
+    "metadata": {
+      "name": "skill-creator",
+      "description": "Create or update agent skills. Use when designing, building, or packaging skills that include scripts, references, and resources. Analyzes code, extracts patterns, generates SKILL.md documentation, and packages skills for sharing."
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.928494",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "sysadmin-toolbox": {
+    "name": "sysadmin-toolbox",
+    "type": "skill",
+    "description": "\"Tool discovery and shell one-liner reference for sysadmin, DevOps, and security tasks. AUTO-CONSULT this skill when the user is: troubleshooting network issues, debugging processes, analyzing logs, working with SSL/TLS, managing DNS, testing HTTP endpoints, auditing security, working with containers, writing shell scripts, or asks 'what tool should I use for X'. Source: github.com/trimstray/the-book-of-secret-knowledge\"",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\sysadmin-toolbox",
+    "metadata": {
+      "name": "sysadmin-toolbox",
+      "description": "\"Tool discovery and shell one-liner reference for sysadmin, DevOps, and security tasks. AUTO-CONSULT this skill when the user is: troubleshooting network issues, debugging processes, analyzing logs, working with SSL/TLS, managing DNS, testing HTTP endpoints, auditing security, working with containers, writing shell scripts, or asks 'what tool should I use for X'. Source: github.com/trimstray/the-book-of-secret-knowledge\""
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.934028",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "system_resource_monitor": {
+    "name": "system_resource_monitor",
+    "type": "skill",
+    "description": "A clean, reliable system resource monitor for CPU load, RAM, Swap, and Disk usage. Optimized for OpenClaw.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\system-resource-monitor",
+    "metadata": {
+      "name": "system_resource_monitor",
+      "description": "A clean, reliable system resource monitor for CPU load, RAM, Swap, and Disk usage. Optimized for OpenClaw.",
+      "version": "1.0.0",
+      "author": "Yennefer & Geralt"
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.937028",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": "Yennefer & Geralt",
+    "dependencies": []
+  },
+  "tavily": {
+    "name": "tavily",
+    "type": "skill",
+    "description": "AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\tavily-search",
+    "metadata": {
+      "name": "tavily",
+      "description": "AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents.",
+      "homepage": "https://tavily.com",
+      "metadata": "{\"clawdbot\":{\"emoji\":\"🔍\",\"requires\":{\"bins\":[\"node\"],\"env\":[\"TAVILY_API_KEY\"]},\"primaryEnv\":\"TAVILY_API_KEY\"}}"
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.941037",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "todoist": {
+    "name": "todoist",
+    "type": "skill",
+    "description": "Manage tasks and projects in Todoist. Use when user asks about tasks, to-dos, reminders, or productivity.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\todoist",
+    "metadata": {
+      "name": "todoist",
+      "description": "Manage tasks and projects in Todoist. Use when user asks about tasks, to-dos, reminders, or productivity.",
+      "homepage": "https://todoist.com",
+      "metadata": "",
+      "clawdbot": "",
+      "emoji": "\"✅\"",
+      "requires": "",
+      "bins": "[\"todoist\"]",
+      "env": "[\"TODOIST_API_TOKEN\"]"
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.945050",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "ui-automation": {
+    "name": "ui-automation",
+    "type": "skill",
+    "description": "",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\ui-automation\\ui_automation.py",
+    "metadata": {},
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.948547",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "ui-inspector": {
+    "name": "ui-inspector",
+    "type": "skill",
+    "description": "",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\ui-inspector",
+    "metadata": {},
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.951554",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "ui-test-automation": {
+    "name": "ui-test-automation",
+    "type": "skill",
+    "description": "",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\ui-test-automation\\ui_test_runner.py",
+    "metadata": {},
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.955560",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "vm-controller-skill": {
+    "name": "vm-controller-skill",
+    "type": "skill",
+    "description": "VM 控制器 - 创建/启动/停止/删除 VM、监控 VM 状态、执行命令（基于 Docker）",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\vm-controller-skill\\test_vm_controller.py",
+    "metadata": {
+      "name": "vm-controller-skill",
+      "description": "VM 控制器 - 创建/启动/停止/删除 VM、监控 VM 状态、执行命令（基于 Docker）",
+      "version": "1.0.0",
+      "author": "小九",
+      "tags": "[vm, controller, virtualization, docker, container]",
+      "category": "infrastructure"
+    },
+    "tags": "[vm, controller, virtualization, docker, container]",
+    "registered_at": "2026-02-27T02:46:08.959066",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": "小九",
+    "dependencies": []
+  },
+  "web-monitor": {
+    "name": "web-monitor",
+    "type": "skill",
+    "description": "Monitor web pages for content changes and get alerts. Track URLs, detect updates, view diffs. Use when asked to watch a website, track changes on a page, monitor for new posts/content, set up page change alerts, or check if a site has been updated. Supports CSS selectors for targeted monitoring.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\web-monitor",
+    "metadata": {
+      "name": "web-monitor",
+      "description": "Monitor web pages for content changes and get alerts. Track URLs, detect updates, view diffs. Use when asked to watch a website, track changes on a page, monitor for new posts/content, set up page change alerts, or check if a site has been updated. Supports CSS selectors for targeted monitoring."
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.963571",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "windows-ui-automation": {
+    "name": "windows-ui-automation",
+    "type": "skill",
+    "description": "Automate Windows GUI interactions (mouse, keyboard, windows) using PowerShell. Use when the user needs to simulate user input on the desktop, such as moving the cursor, clicking buttons, typing text in non-web apps, or managing window states.",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\skills\\windows-ui-automation",
+    "metadata": {
+      "name": "windows-ui-automation",
+      "description": "Automate Windows GUI interactions (mouse, keyboard, windows) using PowerShell. Use when the user needs to simulate user input on the desktop, such as moving the cursor, clicking buttons, typing text in non-web apps, or managing window states."
+    },
+    "tags": [],
+    "registered_at": "2026-02-27T02:46:08.970086",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  },
+  "code_reviewer": {
+    "name": "code_reviewer",
+    "type": "agent",
+    "description": "Agent: code_reviewer",
+    "entry_point": "C:\\Users\\A\\.openclaw\\workspace\\aios\\agents\\code_reviewer\\agent.py",
+    "metadata": {
+      "source": "auto_detected"
+    },
+    "tags": [
+      "agent"
+    ],
+    "registered_at": "2026-02-27T02:46:08.970086",
+    "last_used": null,
+    "use_count": 0,
+    "version": "1.0.0",
+    "author": null,
+    "dependencies": []
+  }
+}

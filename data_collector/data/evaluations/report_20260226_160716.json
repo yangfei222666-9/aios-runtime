@@ -1,0 +1,57 @@
+{
+  "timestamp": "2026-02-26T16:07:16.351054Z",
+  "time_window_hours": 24,
+  "system": {
+    "health_score": 89.28,
+    "grade": "A",
+    "time_window_hours": 24,
+    "events": {
+      "total": 55,
+      "error": 0,
+      "warning": 14,
+      "error_rate": 0.0
+    },
+    "tasks": {
+      "total": 17,
+      "success": 15,
+      "failed": 2,
+      "success_rate": 0.8823529411764706,
+      "avg_duration_ms": 5647.058823529412,
+      "avg_cost_usd": 0.02,
+      "time_window_hours": 24,
+      "task_type": null
+    },
+    "agents": {
+      "total": 1,
+      "avg_score": 84.97
+    }
+  },
+  "tasks": {
+    "total": 17,
+    "success": 15,
+    "failed": 2,
+    "success_rate": 0.8823529411764706,
+    "avg_duration_ms": 5647.058823529412,
+    "avg_cost_usd": 0.02,
+    "time_window_hours": 24,
+    "task_type": null
+  },
+  "agents": [
+    {
+      "agent_id": "coder",
+      "status": "idle",
+      "stats": {
+        "tasks_total": 5,
+        "tasks_success": 4,
+        "tasks_failed": 1,
+        "avg_duration_ms": 5500,
+        "total_cost_usd": 0.06
+      },
+      "success_rate": 0.8,
+      "avg_duration_ms": 5500,
+      "total_cost_usd": 0.06,
+      "score": 84.97,
+      "grade": "A"
+    }
+  ]
+}
