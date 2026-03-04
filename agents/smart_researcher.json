@@ -1,0 +1,23 @@
+{
+  "id": "smart_researcher",
+  "name": "Smart Researcher（比卦研究员）",
+  "version": "1.0.0",
+  "description": "比卦专属智能研究员：自动分析卦象、资源共享、Agent协作扩展。支持每日简报增强 + 自愈闭环建议。",
+  "author": "AIOS Team",
+  "hexagram_affinity": "比卦 (No.8)",
+  "capabilities": [
+    "卦象深度分析",
+    "资源共享模式",
+    "Agent市场推荐",
+    "每日简报优化",
+    "Self-Healing建议",
+    "任务优先级智能排序"
+  ],
+  "tools": ["lancedb_query", "hexagram_analyzer", "market_recommend", "daily_brief_enhance"],
+  "required_python": ">=3.10",
+  "install_command": "python aios.py install smart_researcher",
+  "example_usage": "python aios.py run smart_researcher --task '分析今天比卦策略'",
+  "tags": ["research", "collaboration", "bigua", "self-improving"],
+  "download_count": 0,
+  "last_updated": "2026-03-05"
+}
