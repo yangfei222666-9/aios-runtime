@@ -110,27 +110,28 @@ def run_task(description: str):
     # Step 1: Route
     time.sleep(0.3)
     route = route_task(description)
-    print(f"  Router:     {GREEN}{route}{RESET}")
+    route_label = "Slow Model" if "Slow" in route else "Fast Model"
+    print(f"  Router Decision:     {GREEN}{route_label}{RESET}")
 
     # Step 2: Debate check
     time.sleep(0.2)
     debate = should_debate(description, route)
-    debate_str = f"{YELLOW}Yes (Bull vs Bear){RESET}" if debate else f"{DIM}No{RESET}"
-    print(f"  Debate:     {debate_str}")
+    debate_str = f"{YELLOW}Triggered (Bull vs Bear){RESET}" if debate else f"{DIM}Not Triggered{RESET}"
+    print(f"  Adversarial Debate:  {debate_str}")
 
     # Step 3: Hexagram state
     time.sleep(0.2)
     hex_name, hex_conf = get_hexagram_state()
-    print(f"  Hexagram:   {hex_name} ({hex_conf:.0f}% confidence)")
+    print(f"  Hexagram State:      {hex_name} ({hex_conf:.0f}% confidence)")
 
     # Step 4: Evolution Score
     time.sleep(0.2)
     evo = get_evolution_score()
-    print(f"  Evolution:  {evo:.1f}/100")
+    print(f"  Evolution Score:     {evo:.1f} / 100")
 
     # Step 5: Result
     time.sleep(0.3)
-    print(f"  Result:     {GREEN}✓ Success{RESET}")
+    print(f"  Result:              {GREEN}✓ Success{RESET}")
     print()
 
 

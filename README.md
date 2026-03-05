@@ -1,11 +1,11 @@
 <p align="center">
   <h1 align="center">AIOS — AI Agent Operating System</h1>
-  <p align="center">An observable, self-healing runtime for autonomous AI agents.</p>
+  <p align="center">A runtime system that makes autonomous AI agents observable, self-healing, and reliable in production environments.</p>
 </p>
 
 <p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License"></a>
   <img src="https://img.shields.io/badge/python-3.12+-blue.svg" alt="Python 3.12+">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License"></a>
   <img src="https://img.shields.io/badge/AI-Agents-brightgreen.svg" alt="AI Agents">
   <img src="https://img.shields.io/badge/Evolution%20Score-99.5-orange.svg" alt="Evolution Score">
 </p>
@@ -29,12 +29,20 @@ $ python run_aios.py "analyze dataset"
 ──────────────────────────────────────────────────
 Task: "analyze dataset"
 ──────────────────────────────────────────────────
-  Router:     Fast (Quick Execution)
-  Debate:     No
-  Hexagram:   坤 (Stable, 92% confidence)
-  Evolution:  94.9/100
-  Result:     ✓ Success
+  Router Decision:     Fast Model
+  Adversarial Debate:  Not Triggered
+  Hexagram State:      坤 (Stable, 92% confidence)
+  Evolution Score:     94.9 / 100
+  Result:              ✓ Success
 ```
+
+> AIOS turns AI agents into observable systems — so you can monitor, debug, and evolve them like real software.
+
+### Dashboard
+
+<p align="center">
+  <img src="docs/screenshots/dashboard.png" alt="AIOS Dashboard" width="800">
+</p>
 
 ---
 
