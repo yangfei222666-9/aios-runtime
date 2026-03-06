@@ -40,19 +40,49 @@ print('RESULT:' + json.dumps(result))
     import os
     full_env = {**os.environ, **env}
 
-    proc = subprocess.run(
-        [sys.executable, "-X", "utf8", "-c", script],
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        cwd=str(tmp_path),
-        env=full_env,
-        timeout=15,
-    )
+    # 诊断日志路径
+    stdout_log = tmp_path / f"heartbeat_{fn_name}_stdout.log"
+    stderr_log = tmp_path / f"heartbeat_{fn_name}_stderr.log"
+
+    try:
+        proc = subprocess.run(
+            [sys.executable, "-X", "utf8", "-c", script],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            cwd=str(tmp_path),
+            env=full_env,
+            timeout=10,  # 明确超时 10s
+        )
+    except subprocess.TimeoutExpired as e:
+        # 超时时保存诊断信息
+        if e.stdout:
+            stdout_log.write_text(e.stdout, encoding="utf-8")
+        if e.stderr:
+            stderr_log.write_text(e.stderr, encoding="utf-8")
+        raise RuntimeError(
+            f"Heartbeat subprocess timeout after 10s.\n"
+            f"Logs: {stdout_log}, {stderr_log}"
+        ) from e
+
+    # 保存输出用于诊断
+    stdout_log.write_text(proc.stdout, encoding="utf-8")
+    stderr_log.write_text(proc.stderr, encoding="utf-8")
+
+    if proc.returncode != 0:
+        raise RuntimeError(
+            f"Heartbeat subprocess failed (exit {proc.returncode}).\n"
+            f"stdout: {stdout_log}\nstderr: {stderr_log}"
+        )
+
     for line in proc.stdout.splitlines():
         if line.startswith("RESULT:"):
             return json.loads(line[7:])
-    raise RuntimeError(f"No RESULT in output.\nstdout: {proc.stdout}\nstderr: {proc.stderr}")
+
+    raise RuntimeError(
+        f"No RESULT in output.\n"
+        f"stdout: {stdout_log}\nstderr: {stderr_log}"
+    )
 
 
 @pytest.mark.integration
