@@ -259,25 +259,51 @@ class Scheduler:
         deps = self.dependencies.get(task_id, [])
         return all(d in self.completed for d in deps)
 
-    def _process_queue(self) -> None:
-        """处理就绪队列和等待依赖的任务。"""
+    def tick(self) -> int:
+        """
+        调度器主循环（单次 tick）
+        
+        Returns:
+            启动的任务数量
+        """
+        # 1. 收集可调度的任务（减少锁持有时间）
+        ready_tasks = []
         with self.lock:
-            # 把满足依赖的 waiting 任务移回 queue
-            new_waiting = deque()
-            for task in list(self.waiting):
+            # 从 waiting 队列中找到依赖满足的任务
+            still_waiting = deque()
+            for task in self.waiting:
                 if self._deps_satisfied(task["id"]):
-                    self.queue.append(task)
+                    ready_tasks.append(task)
                 else:
-                    new_waiting.append(task)
-            self.waiting = new_waiting
-
-            # 执行就绪任务
-            while len(self.running) < self.max_concurrent and self.queue:
+                    still_waiting.append(task)
+            self.waiting = still_waiting
+            
+            # 从就绪队列中取出可执行的任务
+            available_slots = self.max_concurrent - len(self.running)
+            while available_slots > 0 and self.queue:
                 task = self.queue.popleft()
                 if self._deps_satisfied(task["id"]):
-                    self._start_task(task)
+                    ready_tasks.append(task)
+                    available_slots -= 1
                 else:
                     self.waiting.append(task)
+        
+        # 2. 启动任务（锁外执行，避免阻塞）
+        started = 0
+        for task in ready_tasks:
+            with self.lock:
+                # 二次检查（防止并发问题）
+                if len(self.running) >= self.max_concurrent:
+                    self.queue.appendleft(task)
+                    break
+                self._start_task(task)
+                started += 1
+        
+        return started
+
+    def _process_queue(self) -> None:
+        """处理就绪队列和等待依赖的任务（兼容旧接口）。"""
+        self.tick()
 
     def _start_task(self, task: Dict[str, Any]) -> None:
         """使用 Executor 启动带超时的任务。"""

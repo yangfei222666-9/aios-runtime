@@ -23,15 +23,17 @@ import time
 import uuid
 from pathlib import Path
 from typing import Any, Dict, List, Optional
+import sys
+
+# Import unified paths
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "agent_system"))
+from paths import TASK_QUEUE as DEFAULT_QUEUE_FILE
 
 # Task types
 TASK_TYPES = ["code", "analysis", "monitor", "refactor", "test", "deploy", "research"]
 
 # Priority levels
 PRIORITIES = ["low", "normal", "high", "urgent"]
-
-# Default queue file
-DEFAULT_QUEUE_FILE = Path(__file__).resolve().parent.parent / "agent_system" / "task_queue.jsonl"
 
 
 class TaskSubmitter:

@@ -1,11 +1,21 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Real Executor - 直接调用 Claude API 执行任务
 """
+import sys
 import json
 import time
 import requests
 from pathlib import Path
+
+# Fix Windows encoding
+if sys.platform == 'win32':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
 
 # 从 OpenClaw 配置读取 API Key
 CONFIG_FILE = Path.home() / ".openclaw" / "openclaw.json"

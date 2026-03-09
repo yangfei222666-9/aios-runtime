@@ -1,6 +1,32 @@
 # AIOS v3.4：我用 Python 造了一个会自我进化的 AI 操作系统
 
-**发布日期：** 2025-01-XX
+> 让 AI 自己运行、自己看、自己进化 —— 从失败中学习，永不停止进化
+
+**作者：** 小九 + 珊瑚海  
+**发布日期：** 2026年3月6日  
+**阅读时间：** 约 20 分钟  
+**项目地址：** [GitHub - AIOS v3.4](https://github.com/yangfei222666-9/Repository-name-aios)
+
+---
+
+## 📝 TL;DR（太长不看版）
+
+**AIOS v3.4 是什么？**
+一个会自我进化的 AI 操作系统，让 AI 真正"活"起来。
+
+**核心能力：**
+- 🎯 **64卦决策系统** — 用中国古典智慧做状态机（100% 状态覆盖）
+- 📊 **Evolution Score 99.5** — 置信度融合算法（任务成功率 85%+）
+- 🔄 **失败自动重生** — LowSuccess_Agent + LanceDB 经验库（失败率降低 30%+）
+- ⚖️ **Bull vs Bear 辩论** — 对抗性验证降低决策失败率 30%+
+- 🛒 **Agent 市场** — 社区贡献 50+ Agent
+
+**技术栈：**
+Python + LanceDB + Sentence-Transformers + Mermaid + Telegram
+
+**部署时间：** < 5 分钟  
+**资源占用：** < 200MB  
+**开源协议：** MIT
 
 ---
 
@@ -795,10 +821,10 @@ python dashboard/server.py
 
 ---
 
-**标签**: #AIOS #AI #Python #开源 #自动化 #自我进化 #64卦 #Evolution_Score #LowSuccess_Agent #Adversarial_Validation
+**标签**: `#AIOS` `#AI` `#Python` `#开源` `#自动化` `#自我进化` `#64卦` `#RAG` `#LanceDB`
 
 ---
 
-**作者：** 小九 + 珊瑚海  
-**发布日期：** 2025-01-XX  
-**版本：** v3.4
+**版本：** v3.4  
+**最后更新：** 2026年3月6日  
+**Star 项目：** [GitHub](https://github.com/yangfei222666-9/Repository-name-aios) ⭐
