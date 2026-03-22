@@ -15,6 +15,30 @@ if ($exitCode -eq 0) {
     $NextAction = "check TAIJIOS_API_TOKEN / task terminal state, then rerun smoke"
 }
 
+function Get-TopReasonCodeV11([string]$dir) {
+    $patterns = @(
+        @{ code = "CONFIG_MISSING"; pattern = "TAIJIOS_API_TOKEN not configured" },
+        @{ code = "TASK_NOT_TERMINAL"; pattern = "run status:\s*running|status:\s*running|job not passed" },
+        @{ code = "DEPENDENCY_MISSING"; pattern = "ModuleNotFoundError|No module named" }
+    )
+
+    if (-not (Test-Path $dir)) { return "EVIDENCE_MISSING" }
+
+    $files =
+        Get-ChildItem -Path $dir -Recurse -File -ErrorAction SilentlyContinue |
+        Where-Object { $_.Length -lt 5MB } |
+        Select-Object -First 200
+
+    foreach ($p in $patterns) {
+        foreach ($f in $files) {
+            if (Select-String -Path $f.FullName -Pattern $p.pattern -Quiet -ErrorAction SilentlyContinue) {
+                return $p.code
+            }
+        }
+    }
+
+    return "DEPENDENCY_MISSING"
+}
 Write-Host "`n写入 smoke_summary.txt ..." -ForegroundColor Yellow
 $evDir = Join-Path $REPO "regression\evidence"
 $zipName = "smoke_evidence_$ts.zip"
@@ -35,6 +59,17 @@ $summary = @(
 ) -join "`n"
 
 $summary | Out-File -FilePath (Join-Path $evDir "smoke_summary.txt") -Encoding utf8 -NoNewline
+
+if ($exitCode -eq 0) {
+    $summaryPath = Join-Path $evDir "smoke_summary.txt"
+    if (-not (Test-Path $summaryPath)) {
+        $Verdict = "INCONCLUSIVE"
+        $TerminalState = "inconclusive"
+        $TopReasonCode = "EVIDENCE_MISSING"
+        $NextAction = "rerun smoke on same branch and include zip + terminal screenshot"
+        $exitCode = 1
+    }
+}
 
 Write-Host "`n打包证据..." -ForegroundColor Yellow
 if (Test-Path $evDir) {
@@ -71,4 +106,5 @@ if ($zipPath -and (Test-Path $zipPath)) {
 }
 
 exit $exitCode
-exit $exitCode
+
+
