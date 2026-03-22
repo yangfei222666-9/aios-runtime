@@ -27,15 +27,6 @@ smoke evidence 的目标是让接收方在 30 秒内完成：
 - evidence_path：本次证据目录（推荐相对 zip 根目录）
 - zip_filename：统一命名为 smoke_evidence_<ts>.zip（不改名）
 
-### 2.2 文本展示名（smoke_summary.txt 中使用）
-- Verdict / Top reason_code / Next action
-- terminal_state / evidence_path / zip_filename（建议与机器字段名一致）
-
-### 2.3 对应关系（建议）
-- PASS → terminal_state=completed
-- FAIL → terminal_state=failed
-- INCONCLUSIVE → terminal_state=inconclusive
-
 若证据缺失导致无法判断，一律判为：
 - verdict=INCONCLUSIVE
 - top_reason_code=EVIDENCE_MISSING
@@ -60,10 +51,10 @@ smoke evidence 的目标是让接收方在 30 秒内完成：
 
 ## 4. 建议输出文件（随 zip 打包）
 
-smoke 必须额外输出一个“单文件摘要”，用于 30 秒验收落槌。二选一：
+smoke 必须额外输出一个“单文件摘要”，用于 30 秒验收落槌。
 
-### 4.1 smoke_summary.txt（推荐）
-- 位置：随 zip 打包（建议放在 regression\evidence 下）
+### smoke_summary.txt（推荐）
+- 必须随 zip 打包
 - 固定 6 行键值对（顺序固定）
 
 Verdict: PASS
@@ -72,15 +63,3 @@ Next action: NONE
 terminal_state: completed
 zip_filename: smoke_evidence_20260322_153012.zip
 evidence_path: regression\evidence
-
-### 4.2 smoke_result.json（可选）
-- 位置：zip 根目录
-- 字段必须使用 snake_case，值域遵守本规范
-
----
-
-## 附：接收方 30 秒验收回执格式（建议统一）
-
-Verdict: PASS|FAIL|INCONCLUSIVE
-Top reason_code: <xxx>
-Next action: <one-line>
